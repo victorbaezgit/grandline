@@ -4,6 +4,12 @@
 <div class="bg-light">
     <div class="container">
         <div class="row justify-content-md-center justify-content-sm-center">
+            @if ($message = Session::get('success'))
+                        <div class="alert alert-success text-center">
+                            <p>{{ $message }}</p>
+                        </div>
+            @endif
+
             @php
                 $contador=0;
             @endphp
