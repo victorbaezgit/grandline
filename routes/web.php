@@ -31,6 +31,14 @@ Route::get('/productos/{producto}', [ProductoController::class,'productoIndividu
 Route::get('/carrito', [CarritoController::class,'mostrarCarrito'])->name('carritos.mostrarCarrito');
 
 
+//FOOTER INFO
+Route::view('/politica-envios', 'footerInfo.politicaEnvios')->name('footerInfo.politicaEnvios');
+Route::view('/contacto', 'footerInfo.contacto')->name('footerInfo.contacto');
+Route::view('/condiciones-venta', 'footerInfo.condicionesVenta')->name('footerInfo.condicionesVenta');
+Route::view('/politica-privacidad', 'footerInfo.politicaPrivacidad')->name('footerInfo.politicaPrivacidad');
+Route::view('/politica-cookies', 'footerInfo.politicaCookies')->name('footerInfo.politicaCookies');
+Route::view('/aviso-legal', 'footerInfo.avisoLegal')->name('footerInfo.avisoLegal');
+
 // Route::resource('colecciones', App\Http\Controllers\ColeccioneController::class);
 // Route::resource('productos', App\Http\Controllers\ProductoController::class);
 // Route::resource('comentarios', App\Http\Controllers\ComentarioController::class);

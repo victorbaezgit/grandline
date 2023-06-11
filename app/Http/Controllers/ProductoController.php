@@ -76,7 +76,7 @@ class ProductoController extends Controller
         $id_coleccion=$producto->id_coleccion;
         $productosRelacionados=Producto::all()->where("id_coleccion","=",$id_coleccion)->where("id","!=",$id);
         $comentarios=Comentario::where("id_producto","=",$id)->paginate(5);
-       
+        
         return view('producto.productoIndividual', compact('producto','tallasDisponibles','tallasTotal','productosRelacionados','comentarios'))->with('i', (request()->input('page', 1) - 1) * $comentarios->perPage());;
     }
 

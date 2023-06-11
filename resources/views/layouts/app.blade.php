@@ -48,6 +48,17 @@
             pointer-events: none;
         }
 
+        #buttomRegister{
+            color:rgb(255, 192, 32)!important;
+            background-color: white!important;
+            border:1px solid rgb(255, 192, 32)!important;
+        }
+        
+        #buttomRegister:hover{
+            color: black !important;
+        }
+
+
         .imagen{
         position:relative;
         }
@@ -488,22 +499,22 @@
             <div class="layoutFooter__item">
                 <ul class="layoutFooter__pages">
                     <li>
-                        <a href="" class="">POLÍTICA DE ENVÍOS</a>
+                        <a href="{{ route('footerInfo.politicaEnvios') }}" class="">POLÍTICA DE ENVÍOS</a>
                     </li>
                     <li>
-                        <a href="" class="">CONTACTO</a>
+                        <a href="{{ route('footerInfo.contacto') }}" class="">CONTACTO</a>
                     </li>
                     <li>
-                        <a href="" class="">CONDICIONES DE VENTA</a>
+                        <a href="{{ route('footerInfo.condicionesVenta') }}" class="">CONDICIONES DE VENTA</a>
                     </li>
                     <li>
-                        <a href="" class="">POLÍTICA DE PRIVACIDAD</a>
+                        <a href="{{ route('footerInfo.politicaPrivacidad') }}" class="">POLÍTICA DE PRIVACIDAD</a>
                     </li>
                     <li>
-                        <a href="" class="">POLÍTICA DE COOKIES</a>
+                        <a href="{{ route('footerInfo.politicaCookies') }}" class="">POLÍTICA DE COOKIES</a>
                     </li>
                     <li>
-                        <a href="" class="">AVISO LEGAL</a>
+                        <a href="{{ route('footerInfo.avisoLegal') }}" class="">AVISO LEGAL</a>
                     </li>
                 </ul>
             </div>
@@ -543,87 +554,5 @@
 </script>
 @yield('scripts')
 
-
-    {{-- <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('colecciones.index') }}">Colecciones</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('productos.index') }}">Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('comentarios.index') }}">Comentarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pedidos.index') }}">Pedidos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('unionpedidos.index') }}">Pedidos Union</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('carritos.index') }}">Carritos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tallas.index') }}">Tallas</a>
-                        </li>
-
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div> --}}
 </body>
 </html>
