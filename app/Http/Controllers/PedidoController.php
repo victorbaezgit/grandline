@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrito;
+use App\Models\Talla;
 use App\Models\Pedido;
 use App\Models\UnionPedido;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class PedidoController
@@ -95,11 +97,18 @@ class PedidoController extends Controller
                 'precio_unitario' => $productos->where('id', $carro->id_producto)->first()->precio,
             ]);
 
+            $stock=Talla::where('id_producto', $carro->id_producto)->where('tipo_talla', $carro->talla)->get();
+            
+            Talla::where('id_producto', $carro->id_producto)->where('tipo_talla', $carro->talla)
+                        ->update([
+                            'stock' => $stock[0]->stock-$carro->unidades
+                        ]);
+                    
             Carrito::where('id', $carro->id)->delete();
         }
 
 
-         return redirect()->route('home')->with('success','Compra realizada correctamente');
+          return redirect()->route('home')->with('success','Compra realizada correctamente');
     }
 
     /**
