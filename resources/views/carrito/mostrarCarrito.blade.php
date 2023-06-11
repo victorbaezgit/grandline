@@ -61,9 +61,9 @@
                     </div>
 
                     <div style="width: 100%;">
-                        <form method="POST" action="">
+                        <form method="POST" action="{{route('carritos.confirmarPedido')}}">
                             @csrf
-                            @method('PUT')
+                            @method("GET")
                         <div class="precioTotal" style="display: flex;justify-content: space-between;width: 100%;">
                             <p style="font-size: 20px">Total</p>
                             <p style="font-size: 20px" id="precioTotal">{{$cart->producto->precio}}€</p>

@@ -28,7 +28,11 @@ Route::get('/', [App\Http\Controllers\ColeccioneController::class, 'listaColecci
 
 Route::get('/colecciones/{coleccion}', [ProductoController::class,'listaProductos'])->name('productos.listaProductos');
 Route::get('/productos/{producto}', [ProductoController::class,'productoIndividual'])->name('productos.productoIndividual');
+
+//CARRITO
 Route::get('/carrito', [CarritoController::class,'mostrarCarrito'])->name('carritos.mostrarCarrito');
+Route::get('/carrito/pedido-formulario', [CarritoController::class,'confirmarPedido'])->name('carritos.confirmarPedido');
+Route::post('/carrito/pedido-finalizar', [PedidoController::class,'hacerPedido'])->name('carritos.hacerPedido');
 
 
 //FOOTER INFO

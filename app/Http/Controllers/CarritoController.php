@@ -50,7 +50,7 @@ class CarritoController extends Controller
 
         if (isset($_REQUEST['añadirCarrito'])) {
 
-            $maximo = Talla::where("id_producto", "=", $request->id_usuario)->where("tipo_talla", "=", $request->talla)->get();
+            $maximo = Talla::where("id_producto", "=", $request->id_producto)->where("tipo_talla", "=", $request->talla)->get();
             $carritoActual = Carrito::where('id_usuario', $request->id_usuario)->where('id_producto', $request->id_producto)->where('talla', $request->talla)->get();
 
 
@@ -80,6 +80,13 @@ class CarritoController extends Controller
         $carrito = Carrito::where("id_usuario","=",Auth::id())->get();
 
         return view('carrito.mostrarCarrito', compact('carrito'));
+    }
+
+    public function confirmarPedido(Request $request)
+    {
+        $precioTotal = $request['precioTotal'];
+
+        return view('carrito.confirmarPedido',compact('precioTotal'));
     }
 
     /**
