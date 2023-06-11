@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class UserController
@@ -106,4 +108,37 @@ class UserController extends Controller
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
     }
+
+    public function mostrarPerfil(){
+        $user = User::find(Auth::id());
+        return view('user.mostrarPerfil', compact('user'));
+    }
+
+    public function cambiarContrasena(){
+        $user = User::find(Auth::id());
+        return view('user.cambiarContrasena', compact('user'));
+    }
+
+    public function actualizarPassword (Request $request)
+    {
+         $request->validate([
+            'oldPassword' => ['required', 'string', 'min:8'],
+            'password' => ['required', 'string', 'min:8','confirmed'],
+            'password_confirmation' => ['required', 'string', 'min:8'],
+        ]);
+
+
+        #Match The Old Password
+        if(!Hash::check($request->oldPassword, auth()->user()->password)){
+            return back()->with("error", "La contraseña anterior no coincide");   
+        }
+
+
+        #Update the new Password
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->password)
+        ]);
+        return back()->with('success','La contraseña ha sido cambiada con éxito');
+    }
+
 }

@@ -37,8 +37,12 @@
                             {{ $producto->descripcion }}
                         </div>
                         <div class="form-group">
-                            <strong>Imagen Producto:</strong>
-                            {{ $producto->imagen_producto }}
+                            <strong>Imagen Delantera:</strong>
+                            {{ $producto->imagen_delantera }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Imagen Trasera:</strong>
+                            {{ $producto->imagen_trasera }}
                         </div>
 
                     </div>

@@ -27,29 +27,33 @@
                     </div>
             @endforeach
     </div> --}}
-    
+   
 
 <div class="productoIndividual">
     <div class="bg-light">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="contenedorProducto">
                     <div class="mb-3" data-bs-interval="false">
-                        {{-- <div class="carousel-inner"> --}}
-                            {{-- <div class="carousel-item active"> --}}
-                                <img style="width: 100%;" src="https://brunosmoda.com/wp-content/uploads/2021/01/CAMISETA-NEGRA-LISA-HOMBRE-10043675_000-5.jpg"  alt="...">
-                            {{-- </div> --}}
-                            {{-- <div class="carousel-item">
-                                <img style="width: 100%;" src="https://brunosmoda.com/wp-content/uploads/2021/01/CAMISETA-NEGRA-LISA-HOMBRE-10043675_000-5.jpg"  alt="...">
+
+                        <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <img src="https://brunosmoda.com/wp-content/uploads/2021/01/CAMISETA-NEGRA-LISA-HOMBRE-10043675_000-5.jpg" class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="" class="d-block w-100" alt="...">
+                              </div>
                             </div>
-                        </div> --}}
-                        {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button> --}}
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
+                            </button>
+                          </div>
+                
                     </div>
 
             
@@ -215,6 +219,9 @@
             @section('scripts')
 
                 <script>
+
+
+
                     var botonAddToCArt = document.querySelector("#addToCart")
                     var tallaS = document.querySelector(".S")
                     var tallaM = document.querySelector(".M")
@@ -408,10 +415,6 @@
 
                 </script>
 
-
-                {{-- <script>
-                    var title =document.head.querySelector("title").innerHTML='{{$clothe->clothe_name}} - R🗲';
-                </script> --}}
 
 
 @endsection

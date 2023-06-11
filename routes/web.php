@@ -7,6 +7,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TallaController;
 use App\Http\Controllers\UnionpedidoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -24,8 +25,12 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
+
+//HOME
 Route::get('/', [App\Http\Controllers\ColeccioneController::class, 'listaColecciones'])->name('home');
 
+
+//COLECCIONES-PRODUCTOS
 Route::get('/colecciones/{coleccion}', [ProductoController::class,'listaProductos'])->name('productos.listaProductos');
 Route::get('/productos/{producto}', [ProductoController::class,'productoIndividual'])->name('productos.productoIndividual');
 
@@ -34,6 +39,15 @@ Route::get('/carrito', [CarritoController::class,'mostrarCarrito'])->name('carri
 Route::get('/carrito/pedido-formulario', [CarritoController::class,'confirmarPedido'])->name('carritos.confirmarPedido');
 Route::post('/carrito/pedido-finalizar', [PedidoController::class,'hacerPedido'])->name('carritos.hacerPedido');
 
+//PEDIDOS
+Route::get('/pedidos', [PedidoController::class,'mostrarPedidos'])->name('pedidos.mostrarPedidos');
+Route::get('/pedidos/productos/{pedido}', [UnionpedidoController::class,'mostrarProductosPedido'])->name('unionPedidos.mostrarProductosPedido');
+
+
+//PERFIL
+Route::get('/perfil', [UserController::class,'mostrarPerfil'])->name('users.mostrarPerfil');
+Route::get('/perfil/cambiar-contrasena', [UserController::class,'cambiarContrasena'])->name('users.cambiarContrasena');
+Route::put('/perfil/actualizar-password', [UserController::class,'actualizarPassword'])->name('users.actualizarPassword');
 
 //FOOTER INFO
 Route::view('/politica-envios', 'footerInfo.politicaEnvios')->name('footerInfo.politicaEnvios');
@@ -43,13 +57,6 @@ Route::view('/politica-privacidad', 'footerInfo.politicaPrivacidad')->name('foot
 Route::view('/politica-cookies', 'footerInfo.politicaCookies')->name('footerInfo.politicaCookies');
 Route::view('/aviso-legal', 'footerInfo.avisoLegal')->name('footerInfo.avisoLegal');
 
-// Route::resource('colecciones', App\Http\Controllers\ColeccioneController::class);
-// Route::resource('productos', App\Http\Controllers\ProductoController::class);
-// Route::resource('comentarios', App\Http\Controllers\ComentarioController::class);
-// Route::resource('pedidos', App\Http\Controllers\PedidoController::class);
-// Route::resource('unionpedidos', App\Http\Controllers\UnionpedidoController::class);
-// Route::resource('carritos', App\Http\Controllers\CarritoController::class);
-// Route::resource('tallas', App\Http\Controllers\TallaController::class);
 
 //CRUD COLECCIONES
 Route::get('panel/colecciones', [ColeccioneController::class,'index'])->name('colecciones.index');

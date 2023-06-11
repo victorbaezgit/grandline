@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property $nombre_producto
  * @property $precio
  * @property $descripcion
- * @property $imagen_producto
+ * @property $imagen_delantera
+ * @property $imagen_trasera
  * @property $created_at
  * @property $updated_at
  *
@@ -32,7 +33,8 @@ class Producto extends Model
 		'nombre_producto' => 'required',
 		'precio' => 'required',
 		'descripcion' => 'required',
-		'imagen_producto' => 'required',
+		'imagen_delantera' => 'required',
+		'imagen_trasera' => 'required',
     ];
 
     protected $perPage = 20;
@@ -42,7 +44,7 @@ class Producto extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_coleccion','nombre_producto','precio','descripcion','imagen_producto'];
+    protected $fillable = ['id_coleccion','nombre_producto','precio','descripcion','imagen_delantera','imagen_trasera'];
 
 
     /**

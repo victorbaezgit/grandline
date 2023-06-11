@@ -57,6 +57,13 @@ class PedidoController extends Controller
         return redirect()->route('pedidos.index')
             ->with('success', 'Pedido created successfully.');
     }
+    
+    public function mostrarPedidos()
+    {
+        $pedidos = Pedido::all()->where("id_usuario","=",Auth::id());
+
+        return view('pedido.verPedidos', compact('pedidos'));
+    }
 
     public function hacerPedido(Request $request)
     {

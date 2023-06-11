@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('nombre_producto')->unique();
             $table->float('precio');
             $table->string('descripcion');
-            $table->string('imagen_producto');
+            $table->string('imagen_delantera');
+            $table->string('imagen_trasera');
             $table->timestamps();
         });
     }

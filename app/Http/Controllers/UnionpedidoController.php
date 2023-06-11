@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unionpedido;
+use App\Models\Pedido;
 use Illuminate\Http\Request;
 
 /**
@@ -24,6 +25,13 @@ class UnionpedidoController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $unionpedidos->perPage());
     }
 
+    
+    public function mostrarProductosPedido($pedido)
+    {
+        $unionpedidos = Unionpedido::where('id_pedido', $pedido)->get();
+
+        return view('unionpedido.verProductos', compact('unionpedidos'));
+    }
     /**
      * Show the form for creating a new resource.
      *

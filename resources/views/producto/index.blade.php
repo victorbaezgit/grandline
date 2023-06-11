@@ -40,7 +40,8 @@
 										<th>Nombre Producto</th>
 										<th>Precio</th>
 										<th>Descripcion</th>
-										<th>Imagen Producto</th>
+										<th>Imagen Delantera</th>
+										<th>Imagen Trasera</th>
 
                                         <th></th>
                                     </tr>
@@ -54,7 +55,8 @@
 											<td>{{ $producto->nombre_producto }}</td>
 											<td>{{ $producto->precio }}</td>
 											<td>{{ $producto->descripcion }}</td>
-											<td>{{ $producto->imagen_producto }}</td>
+											<td>{{ $producto->imagen_delantera }}</td>
+											<td>{{ $producto->imagen_trasera }}</td>
 
                                             <td>
                                                 <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
