@@ -157,13 +157,17 @@
         <h1 class="text-dark mb-4">Comentarios</h1>
       <div class="card bg-light">
         @if ($message = Session::get('error'))
-                    <div class="alert alert-danger">
-                        <p>{{ $message }}</p>
-                    </div>
-        @endif
+                            <div class="alert alert-danger">
+                                <p>{{ $message }}</p>
+                            </div>
+                @elseif($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
+                @endif
           <div class="card-body text-dark p-5">
-              <!-- Comment form-->
-            
+
+
               @includeif('partials.errors')
               <form method="POST" action="@auth {{route('comentarios.store')}} @else {{route('login')}} @endauth"  role="form" class="mb-4" enctype="multipart/form-data">
                 @csrf
@@ -188,13 +192,27 @@
                     <div class="flex-shrink-0 rounded-circle bg-warning d-flex justify-content-center align-items-center" style="width:50px;height:50px;object-fit:cover;">{{strtoupper(substr($comentario->user->name,0,1))}}</div>
                     <div class="ms-3">
                     
-                        <div class="fw-bold"><span class="fw-bolder">{{$comentario->user->name}}</span> &middot; {{substr($comentario->created_at,0,10)}}</div>
+                        <div class="fw-bold d-flex"><span class="fw-bolder">{{$comentario->user->name}}</span> &middot; {{substr($comentario->created_at,0,10)}}
+
+                            @if (Auth::id()==$comentario->user->id)
+                            <form action="{{ route('comentarios.destroy',$comentario->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="borrarComentario" value="borrarComentario">
+                                <button type="submit" style="background-color:white;border:none;color: red;font-weight: 400;text-decoration: none;font-size: 10px"><i class="fa fa-fw fa-trash m-1"></i> {{ __('Eliminar') }}</button>
+                              </form>
+                            @endif
+
+                        </div>
                         @if (strlen($comentario->contenido)>100)
                             {{substr($comentario->contenido,0,100)}}...
                         @else
                             "{{substr($comentario->contenido,0,100)}}"
                         @endif
-                    
+
+                        
+                        
+                        
                     </div>
                 </div>
               @endforeach

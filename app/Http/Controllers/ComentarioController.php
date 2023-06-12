@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comentario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ComentarioController
@@ -45,10 +46,17 @@ class ComentarioController extends Controller
     {
         request()->validate(Comentario::$rules);
 
-        $comentario = Comentario::create($request->all());
+        
         
         if(isset($_REQUEST['comentarioUsuario'])){
-            return redirect()->back();
+            
+            if(DB::table('comentarios')->where('id_usuario', $request->id_usuario)->where('id_producto', $request->id_producto)->exists()){
+                return redirect()->back()->with('error', 'Solo se puede comentar una vez por usuario.');
+            }else{
+                $comentario = Comentario::create($request->all());
+                return redirect()->back()->with('success', 'Comentario añadido correctamente.');
+            }
+            
         }else{
             return redirect()->route('comentarios.index')
             ->with('success', 'Comentario created successfully.');
@@ -106,9 +114,14 @@ class ComentarioController extends Controller
      */
     public function destroy($id)
     {
-        $comentario = Comentario::find($id)->delete();
 
-        return redirect()->route('comentarios.index')
+        if(isset($_REQUEST['borrarComentario'])){
+            $comentario = Comentario::find($id)->delete();
+            return redirect()->back()->with('success', 'Comentario eliminado correctamente.');
+        }else{
+            return redirect()->route('comentarios.index')
             ->with('success', 'Comentario deleted successfully');
+        }
     }
+
 }

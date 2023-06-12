@@ -117,6 +117,7 @@ Route::post('panel/tallas', [TallaController::class,'store'])->name('tallas.stor
 Route::patch('panel/tallas/{talla}', [TallaController::class,'update'])->name('tallas.update');
 Route::delete('panel/tallas/{talla}/destroy', [TallaController::class,'destroy'])->name('tallas.destroy');
 
+//CRUD USERS
 Route::get('panel/usuarios', [UserController::class,'index'])->name('users.index');
 Route::get('panel/usuarios/create', [UserController::class,'create'])->name('users.create');
 Route::get('panel/usuarios/{usuario}', [UserController::class,'show'])->name('users.show');
