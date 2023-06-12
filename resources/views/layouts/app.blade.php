@@ -32,7 +32,6 @@
             box-sizing: border-box;
             font-family: 'Raleway', sans-serif;
         }
-        
         h1,h2,h3,h4{
             font-weight: 900!important;
         }
@@ -61,6 +60,11 @@
 
         .imagen{
         position:relative;
+        }
+
+        
+        .eliminarX{
+            position:absolute;
         }
         
         .bg-warning{
@@ -103,6 +107,23 @@
         color:black;
         opacity:0;
         }
+
+        .menu{
+        margin:10px;
+        border-radius: 25px;
+        position:absolute;
+        top: 0%;
+        right:0%;
+        width: 35%;
+        background-color:white;   
+        color:black;
+        }
+        .infoMenu{
+            display:flex;
+            justify-content: space-between;
+            margin:10px;
+        }
+
 
         .carta .imagen{
             object-fit: cover;  

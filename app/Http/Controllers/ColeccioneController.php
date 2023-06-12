@@ -129,7 +129,14 @@ class ColeccioneController extends Controller
     {
         $coleccione = Coleccione::find($id)->delete();
 
-        return redirect()->route('colecciones.index')
+        if(isset($_REQUEST['borrarColeccion'])){
+            return redirect()->route('home')
+            ->with('success', 'Colección eliminada correctamente');
+        }else{
+            return redirect()->route('colecciones.index')
             ->with('success', 'Coleccione deleted successfully');
+        }
+
+       
     }
 }
