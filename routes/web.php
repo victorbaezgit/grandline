@@ -31,11 +31,11 @@ Route::get('/', [App\Http\Controllers\ColeccioneController::class, 'listaColecci
 
 //ADMIN
 
-Route::get('/productos/{producto}', [ProductoController::class,'formAnadirProducto'])->name('productos.formAnadirProducto');
+Route::get('/colecciones/colecciones/create', [ColeccioneController::class,'crear'])->name('colecciones.crear');
 
 //COLECCIONES-PRODUCTOS
 Route::get('/colecciones/{coleccion}', [ProductoController::class,'listaProductos'])->name('productos.listaProductos');
-Route::get('/colecciones/formulario-añadir-coleccion', [ColeccioneController::class, 'form'])->name('form_add_Collection');
+Route::get('/productos/{producto}', [ProductoController::class,'productoIndividual'])->name('productos.productoIndividual');
 
 //CARRITO
 Route::get('/carrito', [CarritoController::class,'mostrarCarrito'])->name('carritos.mostrarCarrito');

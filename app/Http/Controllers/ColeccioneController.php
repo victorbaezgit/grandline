@@ -49,6 +49,12 @@ class ColeccioneController extends Controller
         return view('coleccione.create', compact('coleccione'));
     }
 
+    public function crear()
+    {
+        $coleccione = new Coleccione();
+        return view('coleccione.crear', compact('coleccione'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -61,8 +67,14 @@ class ColeccioneController extends Controller
 
         $coleccione = Coleccione::create($request->all());
 
-        return redirect()->route('colecciones.index')
+        if(isset($_REQUEST['crearColeccion'])){
+            return redirect()->route('home')->with('success', 'Colección creada correctamente.');;
+        }else{
+            return redirect()->route('colecciones.index')
             ->with('success', 'Coleccione created successfully.');
+        }
+
+        
     }
 
     /**

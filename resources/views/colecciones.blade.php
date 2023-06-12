@@ -3,11 +3,11 @@
 @section('content')
 <div class="bg-light">
     <div class="container">
-        {{-- @Auth
+        @Auth
     @if(Auth::user()->hasRole('admin'))
-    <a href="{{route('form_add_Collection')}}" id="buttomLogin" style="width: 15%; min-width: 194px;font-size: 17px" class="bg-warning btn mb-3">+ Añadir Colección</a>
+    <a href="{{route('colecciones.crear')}}" id="buttomLogin" style="width: 15%; min-width: 194px;font-size: 17px" class="bg-warning btn mb-3">+ Añadir Colección</a>
     @endif
-    @endAuth --}}
+    @endAuth
         <div class="row justify-content-md-center justify-content-sm-center">
             
             @if ($message = Session::get('success'))
