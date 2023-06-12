@@ -11,7 +11,7 @@
             </div>
                 <h1>Su carrito parece que está vacío</h1>
             <p style="text-align: center">Agregue artículos a su carrito.</p>
-            <form action="{{route('home')}}" method="post">
+            <form action="{{route('home')}}">
                 <button style="width: 100%; min-width: 194px;font-size: 21px;margin-bottom: 15px" class="btn bg-warning fw-bold p-3">Seguir comprando</button>
             </form>
                 @else
