@@ -63,9 +63,22 @@ class ColeccioneController extends Controller
      */
     public function store(Request $request)
     {
+
         request()->validate(Coleccione::$rules);
 
-        $coleccione = Coleccione::create($request->all());
+        $datos=$request->all();
+
+        if($request->hasFile('imagen_coleccion')){
+            $file=$request['imagen_coleccion'];
+            $destinationPath="img/";
+            $filename=time() . "-" . $file->getClientOriginalName();
+            $uploadSuccess= $request['imagen_coleccion']->move($destinationPath, $filename);
+            $datos['imagen_coleccion']=$destinationPath . $filename;
+        }else{
+            $datos['imagen_coleccion']="img/j-sin-foto.png";
+        }
+
+        $coleccione = Coleccione::create($datos);
 
         if(isset($_REQUEST['crearColeccion'])){
             return redirect()->route('home')->with('success', 'Colección creada correctamente.');;
@@ -127,7 +140,14 @@ class ColeccioneController extends Controller
      */
     public function destroy($id)
     {
-        $coleccione = Coleccione::find($id)->delete();
+
+        $coleccione = Coleccione::find($id);
+
+        if($coleccione['imagen_coleccion']!="img/j-sin-foto.png"){
+            unlink($coleccione['imagen_coleccion']);
+        }
+
+        $coleccione->delete();
 
         if(isset($_REQUEST['borrarColeccion'])){
             return redirect()->route('home')

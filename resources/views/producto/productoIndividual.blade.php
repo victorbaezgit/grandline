@@ -7,32 +7,23 @@
 
 
 @section('content')
-{{-- <div class="bg-light">
-
-    <h1 class="text-center fw-bold">{{$coleccion->nombre_coleccion}}</h1><br><br>
-    <div class="container">
-        <div class="row justify-content-md-center justify-content-sm-center">
-            @foreach ($productos as $producto)
-
-                    <div class="col-md-3 col-sm-6 carta" style="margin-bottom:10px;">
-                        <a class="imagen" href="" style="position: relative;">
-
-                            <img style="width: 100%;height:100%;" src="{{ URL::to("/$producto->imagen_producto") }}">
-
-
-                            <h5 class="name text-dark fw-bold mt-3">{{$coleccion->nombre_coleccion}} - {{$producto->nombre_producto}}</h5>
-                            <h6 class="name text-dark fw-light">{{$producto->precio}} €</h6>
-
-                        </a>
-                    </div>
-            @endforeach
-    </div> --}}
-   
 
 <div class="productoIndividual">
     <div class="bg-light">
+        @if($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
         <div class="container px-4 px-lg-5 mt-5">
+            @Auth
+            @if(Auth::user()->hasRole('admin'))
+            <a href="{{route('tallas.crear', $producto->id)}}" id="buttomLogin" style="width: 15%; min-width: 194px;font-size: 17px" class="bg-warning btn mb-3">+ Añadir stock</a>
+            @endif
+            @endAuth
+           
             <div class="contenedorProducto">
+                
                     <div class="mb-3" data-bs-interval="false">
 
                         <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">

@@ -40,19 +40,11 @@
 
                                 <div class="infoMenu">
 
-                                    {{-- <form action="" method="POST">
-                                        @csrf
-                                       
-                                        <input type="hidden" name="editarColeccion" value="editarColeccion">
-                                        <button type="submit" style="background-color:white;border:none;color: red;font-weight: 700;text-decoration: none;font-size: 20px"><i class="fa fa-fw fa-trash"></i> {{ __('X') }}</button>
-                                      </form> --}}
-
-
                                     <form action="{{route('colecciones.destroy',$coleccion->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="borrarColeccion" value="borrarColeccion">
-                                        <button type="submit" style="background-color:white;border:none;color: red;font-weight: 700;text-decoration: none;font-size: 20px"><i class="fa fa-fw fa-trash"></i> {{ __('X') }}</button>
+                                        <button class="eliminarX" type="submit" style="background-color:white;border:none;color: red;font-weight: 700;text-decoration: none;font-size: 20px"><i class="fa fa-fw fa-trash"></i> {{ __('X') }}</button>
                                       </form>
                                 
 

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Talla;
+use App\Models\Comentario;
+use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class TallaController
@@ -22,6 +25,14 @@ class TallaController extends Controller
 
         return view('talla.index', compact('tallas'))
             ->with('i', (request()->input('page', 1) - 1) * $tallas->perPage());
+    }
+
+    public function crear($id)
+    {
+        $talla = new Talla();
+        $producto = Producto::find($id);
+        $tallasTotal=['S','M','L','XL'];
+        return view('talla.crear', compact('talla', 'producto', 'tallasTotal'));
     }
 
     /**
@@ -43,12 +54,28 @@ class TallaController extends Controller
      */
     public function store(Request $request)
     {
+
         request()->validate(Talla::$rules);
 
-        $talla = Talla::create($request->all());
+        $datos = $request->all();
 
-        return redirect()->route('tallas.index')
+
+        if (DB::table('tallas')->where('id_producto', $datos['id_producto'])->where('tipo_talla', $datos['tipo_talla'])->exists()) {
+                Talla::where('id_producto', $datos['id_producto'])->where('tipo_talla', $datos['tipo_talla'])
+                    ->update([
+                        'stock' => DB::raw("stock+".$datos['stock'])
+                    ]);
+        } else {
+            $talla = Talla::create($datos);
+        }
+
+        if(isset($_REQUEST['AnadirStock'])){
+            return redirect()->route('productos.productoIndividual', $datos['id_producto'])->with('success', 'Stock añadido correctamente.');
+        }else{
+            return redirect()->route('tallas.index')
             ->with('success', 'Talla created successfully.');
+        }
+        
     }
 
     /**

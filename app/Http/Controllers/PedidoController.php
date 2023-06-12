@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Carrito;
 use App\Models\Talla;
 use App\Models\Pedido;
-use App\Models\UnionPedido;
+use App\Models\Unionpedido;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -95,7 +95,7 @@ class PedidoController extends Controller
         ]);
 
         foreach ($carrito as $carro) {
-            UnionPedido::create([
+            Unionpedido::create([
                 'id_usuario' => $id_usuario,
                 'id_producto' => $productos->where('id', $carro->id_producto)->first()->id,
                 'id_pedido' => $pedido->id,

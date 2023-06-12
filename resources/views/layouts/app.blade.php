@@ -61,11 +61,6 @@
         .imagen{
         position:relative;
         }
-
-        
-        .eliminarX{
-            position:absolute;
-        }
         
         .bg-warning{
             background-color: rgb(255, 192, 32)!important;
@@ -114,7 +109,6 @@
         position:absolute;
         top: 0%;
         right:0%;
-        width: 35%;
         background-color:white;   
         color:black;
         }
@@ -536,6 +530,7 @@
             </div>
         </div>
     </div>
+    
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script>

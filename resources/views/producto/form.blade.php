@@ -21,15 +21,20 @@
             {{ Form::text('descripcion', $producto->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <div class="form-group">
-            {{ Form::label('imagen_delantera') }}
-            {{ Form::text('imagen_delantera', $producto->imagen_delantera, ['class' => 'form-control' . ($errors->has('imagen_delantera') ? ' is-invalid' : ''), 'placeholder' => 'Imagen Delantera']) }}
-            {!! $errors->first('imagen_delantera', '<div class="invalid-feedback">:message</div>') !!}
+        <div class="row mb-3 justify-content-center">
+            <div class="form-group {{ $errors->has('imagen_delantera') ? 'has-error' : '' }}">
+                <label for="imagen_delantera">Imagen delantera</label>
+                <input type="file" name="imagen_delantera" class="form-control">
+                <span class="text-danger">{{ $errors->first('imagen_delantera') }}</span>
+            </div>
         </div>
-        <div class="form-group">
-            {{ Form::label('imagen_trasera') }}
-            {{ Form::text('imagen_trasera', $producto->imagen_trasera, ['class' => 'form-control' . ($errors->has('imagen_trasera') ? ' is-invalid' : ''), 'placeholder' => 'Imagen Trasera']) }}
-            {!! $errors->first('imagen_trasera', '<div class="invalid-feedback">:message</div>') !!}
+
+        <div class="row mb-3 justify-content-center">
+            <div class="form-group {{ $errors->has('imagen_trasera') ? 'has-error' : '' }}">
+                <label for="imagen_trasera">Imagen trasera</label>
+                <input type="file" name="imagen_trasera" class="form-control">
+                <span class="text-danger">{{ $errors->first('imagen_trasera') }}</span>
+            </div>
         </div>
 
     </div>
