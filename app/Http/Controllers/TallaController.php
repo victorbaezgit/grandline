@@ -86,6 +86,8 @@ class TallaController extends Controller
      */
     public function update(Request $request, Talla $talla)
     {
+
+        
         request()->validate(Talla::$rules);
 
         $talla->update($request->all());

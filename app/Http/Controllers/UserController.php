@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\DB;
 /**
  * Class UserController
  * @package App\Http\Controllers
@@ -109,28 +109,30 @@ class UserController extends Controller
             ->with('success', 'User deleted successfully');
     }
 
-    public function mostrarPerfil(){
+    public function mostrarPerfil()
+    {
         $user = User::find(Auth::id());
         return view('user.mostrarPerfil', compact('user'));
     }
 
-    public function cambiarContrasena(){
+    public function cambiarContrasena()
+    {
         $user = User::find(Auth::id());
         return view('user.cambiarContrasena', compact('user'));
     }
 
-    public function actualizarPassword (Request $request)
+    public function actualizarPassword(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'oldPassword' => ['required', 'string', 'min:8'],
-            'password' => ['required', 'string', 'min:8','confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'password_confirmation' => ['required', 'string', 'min:8'],
         ]);
 
 
         #Match The Old Password
-        if(!Hash::check($request->oldPassword, auth()->user()->password)){
-            return back()->with("error", "La contraseña anterior no coincide");   
+        if (!Hash::check($request->oldPassword, auth()->user()->password)) {
+            return back()->with("error", "La contraseña anterior no coincide");
         }
 
 
@@ -138,7 +140,32 @@ class UserController extends Controller
         User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->password)
         ]);
-        return back()->with('success','La contraseña ha sido cambiada con éxito');
+        return back()->with('success', 'La contraseña ha sido cambiada con éxito');
     }
 
+    public function detallesPersonales()
+    {
+        return view('user.detallesPersonales');
+    }
+
+    public function actualizarPerfil(Request $request, User $user)
+    {
+       
+        // request()->validate(User::$rules);
+
+        // $user->update($request->all());
+
+        User::where('id', Auth::id())
+            ->update([
+                'name' => DB::raw("'$request->name'"),
+                'surname' => DB::raw("'$request->surname'"),
+                'direccion' => DB::raw("'$request->direccion'"),
+                'codigoPostal' => DB::raw("'$request->codigoPostal'"),
+                'localidad' => DB::raw("'$request->localidad'"),
+                'pais' => DB::raw("'$request->pais'"),
+                'telefono' => DB::raw("'$request->telefono'"),
+            ]);
+
+        return back()->with('success', 'Perfil guardado correctamente');
+    }
 }

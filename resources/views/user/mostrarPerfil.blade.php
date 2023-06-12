@@ -13,7 +13,7 @@
             </div>
 
         <div style="min-width: 351px;width: 351px">
-            <a href="" style="text-decoration: none;color: initial">
+            <a href="{{route('users.detallesPersonales')}}" style="text-decoration: none;color: initial">
                 <h4>Detalles Personales</h4>
                 <p>Edite aquí sus datos personales, como la dirección de entrega por defecto y el nombre.</p>
             </a>
