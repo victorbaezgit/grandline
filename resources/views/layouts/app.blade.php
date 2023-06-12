@@ -401,7 +401,13 @@
         
                     @else
                         <li class="nav-item dropdown" style="list-style: none;font-size: 11px;padding-right: 16px;">
-                            <a class="nav-link" href="{{ route('users.mostrarPerfil') }}"><span class="icon iconSize-16"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.696.074a3.841 3.841 0 1 1 1.498 7.534A3.841 3.841 0 0 1 7.696.074ZM9 1.049a2.85 2.85 0 1 0-1.112 5.59 2.85 2.85 0 0 0 1.112-5.59Z"></path> <path d="M3.887 10.813A6.444 6.444 0 0 1 14.89 15.37a.494.494 0 1 1-.988 0v-.003a5.457 5.457 0 0 0-10.913 0v.003a.494.494 0 1 1-.988 0c0-1.71.679-3.348 1.887-4.557Z"></path></svg>&nbsp&nbsp</span> {{ Auth::user()->name }}</a>
+                            <a class="nav-link" href="{{ route('users.mostrarPerfil') }}"><span class="icon iconSize-16"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.696.074a3.841 3.841 0 1 1 1.498 7.534A3.841 3.841 0 0 1 7.696.074ZM9 1.049a2.85 2.85 0 1 0-1.112 5.59 2.85 2.85 0 0 0 1.112-5.59Z"></path> <path d="M3.887 10.813A6.444 6.444 0 0 1 14.89 15.37a.494.494 0 1 1-.988 0v-.003a5.457 5.457 0 0 0-10.913 0v.003a.494.494 0 1 1-.988 0c0-1.71.679-3.348 1.887-4.557Z"></path></svg>&nbsp&nbsp</span>
+                                @Auth
+                                    @if(@Auth::user()->hasRole('admin'))
+                                    ADMIN
+                                    @endif
+                                @endAuth 
+                            {{ Auth::user()->name }}</a>
                         </li>
                     @endguest
                     <a href="{{ route('carritos.mostrarCarrito') }}" class="nav-link pl-4" style="font-size: 15px"><span class="icon iconSize-16"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M14.387 5.16h-2.79V3.152a3.21 3.21 0 0 0-6.42 0V5.16H2.384l-.383 9.58a1.2 1.2 0 0 0 1.2 1.252h10.4a1.207 1.207 0 0 0 1.2-1.22l-.414-9.612ZM5.98 3.152a2.407 2.407 0 1 1 4.814 0V5.16H5.98V3.153Zm7.623 12.036h-10.4a.4.4 0 0 1-.4-.417l.352-8.81h2.022v1.6h.8v-1.6h4.814v1.6h.8v-1.6h2.023l.384 8.826a.4.4 0 0 1-.395.4v.001Z"></path></svg>&nbsp&nbsp</span>Carrito</a>
@@ -418,26 +424,8 @@
 
                 
                 @auth
-                {{-- @hasrole('admin')
+                @if(@Auth::user()->hasRole('admin'))
                 <li class="nav-item w-100">
-                    <a href="" class="nav-link pl-4"><strong>Añadir admin</strong></a>
-                </li>
-        
-                <li class="nav-item w-100">
-                    <a href="" class="nav-link pl-4"><strong>Listado Usuarios</strong></a>
-                </li>
-        
-                <li class="nav-item w-100">
-                    <a href="" class="nav-link pl-4"><strong>Listado Ventas</strong></a>
-                </li>
-                @else --}}
-                <li class="nav-item w-100">
-                    <a class="nav-link" href="{{ route('carritos.mostrarCarrito') }}">Carrito</a>
-                </li>
-                <li class="nav-item w-100">
-                    <a class="nav-link" href="{{ route('pedidos.mostrarPedidos') }}">Mis pedidos</a>
-                </li>
-                {{-- <li class="nav-item w-100">
                     <a class="nav-link" href="{{ route('colecciones.index') }}">Colecciones</a>
                 </li>
                 <li class="nav-item w-100">
@@ -457,15 +445,16 @@
                 </li>
                 <li class="nav-item w-100">
                     <a class="nav-link" href="{{ route('tallas.index') }}">Tallas</a>
-                </li> --}}
-                    {{-- <li class="nav-item w-100">
-                        <a href="" class="nav-link pl-4"><strong>Mis pedidos</strong></a>
-                    </li>
-        
-                    <li class="nav-item w-100">
-                        <a href="" class="nav-link pl-4"><strong>Carrito</strong></a>
-                    </li> --}}
-                {{-- @endhasrole --}}
+                </li>
+                @else
+                <li class="nav-item w-100">
+                    <a class="nav-link" href="{{ route('carritos.mostrarCarrito') }}">Carrito</a>
+                </li>
+                <li class="nav-item w-100">
+                    <a class="nav-link" href="{{ route('pedidos.mostrarPedidos') }}">Mis pedidos</a>
+                </li>    
+                @endif
+                
                 @endauth
                 @guest
                 @if (Route::has('login'))

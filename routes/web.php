@@ -29,10 +29,13 @@ Auth::routes();
 //HOME
 Route::get('/', [App\Http\Controllers\ColeccioneController::class, 'listaColecciones'])->name('home');
 
+//ADMIN
+
+Route::get('/productos/{producto}', [ProductoController::class,'formAnadirProducto'])->name('productos.formAnadirProducto');
 
 //COLECCIONES-PRODUCTOS
 Route::get('/colecciones/{coleccion}', [ProductoController::class,'listaProductos'])->name('productos.listaProductos');
-Route::get('/productos/{producto}', [ProductoController::class,'productoIndividual'])->name('productos.productoIndividual');
+Route::get('/colecciones/formulario-añadir-coleccion', [ColeccioneController::class, 'form'])->name('form_add_Collection');
 
 //CARRITO
 Route::get('/carrito', [CarritoController::class,'mostrarCarrito'])->name('carritos.mostrarCarrito');

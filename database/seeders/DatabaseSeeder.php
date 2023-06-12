@@ -6,6 +6,7 @@ use App\Models\Producto;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,13 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        //CREACION DE ROLES
+        $this->call(PermissionSeeder::class);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        $userPrueba=User::create(['name'=>'vic','surname'=>'el milhor','email'=>'elmilhor@gmail.com','direccion'=>'adivinas','codigoPostal'=>'41720','localidad'=>'ma city','pais'=>'Espoño','telefono'=>'11111111sexo','password'=>Hash::make("jejejeje")]);
+        //USUARIO ADMIN
+        $admin=User::create(['name'=>'vic','surname'=>'el milhor','email'=>'elmilhor@gmail.com','direccion'=>'adivinas','codigoPostal'=>'41720','localidad'=>'ma city','pais'=>'Espoño','telefono'=>'11111111sexo','password'=>Hash::make("jejejeje")]);
+        $admin->assignRole('admin');
+
+
+        //COLECCION SEEDER
         $this->call(ColeccionSeeder::class);
+  
+        
     }
 }

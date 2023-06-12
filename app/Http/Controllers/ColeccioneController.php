@@ -16,12 +16,19 @@ class ColeccioneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         $colecciones = Coleccione::paginate();
 
         return view('coleccione.index', compact('colecciones'))
             ->with('i', (request()->input('page', 1) - 1) * $colecciones->perPage());
+    }
+
+    public function form()
+    {
+        return view('coleccione.formularioAnadirColeccion');
     }
 
 
