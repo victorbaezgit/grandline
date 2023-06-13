@@ -67,20 +67,16 @@ class ColeccioneController extends Controller
 
         $datos=$request->all();
 
+        if($request->hasFile('imagen_coleccion')){
         $file=request()->file('imagen_coleccion');
         $obj= Cloudinary::upload($file->getRealPath(),['folder'=>'productos']);
         $url=$obj->getSecurePath();
 
         $datos['imagen_coleccion']=$url;
-        // if($request->hasFile('imagen_coleccion')){
-        //     $file=$request['imagen_coleccion'];
-        //     $destinationPath="img/";
-        //     $filename=time() . "-" . $file->getClientOriginalName();
-        //     $uploadSuccess= $request['imagen_coleccion']->move($destinationPath, $filename);
-        //     $datos['imagen_coleccion']=$destinationPath . $filename;
-        // }else{
-        //     $datos['imagen_coleccion']="img/j-sin-foto.png";
-        // }
+        }else{
+            $datos['imagen_coleccion']="https://res.cloudinary.com/daizvavk0/image/upload/v1686645847/productos/imgdefault_tn8ezg.jpg";
+       
+        }
 
         $coleccione = Coleccione::create($datos);
 
@@ -129,8 +125,33 @@ class ColeccioneController extends Controller
     public function update(Request $request, Coleccione $coleccione)
     {
         request()->validate(Coleccione::$rules);
+        $datos=$request->all();
 
-        $coleccione->update($request->all());
+        if($request->hasFile('imagen_coleccion')){
+            $file=request()->file('imagen_coleccion');
+            $obj= Cloudinary::upload($file->getRealPath(),['folder'=>'productos']);
+            $url=$obj->getSecurePath();
+    
+            $datos['imagen_coleccion']=$url;
+
+            if($_REQUEST['imagen_anterior']!="https://res.cloudinary.com/daizvavk0/image/upload/v1686645847/productos/imgdefault_tn8ezg.jpg"){
+                
+                $urlSplit=explode("/",$_REQUEST['imagen_anterior']);
+                $ultimoValor=array_pop($urlSplit);
+                $publicId=explode(".",$ultimoValor);
+                
+                Cloudinary::destroy("productos/".$publicId[0]);
+            }
+        }else{
+            $datos['imagen_coleccion']=$_REQUEST['imagen_anterior'];
+        }
+
+
+        Coleccione::where('nombre_coleccion', $_REQUEST['nombre_anterior'])
+                        ->update([
+                            'nombre_coleccion' => $datos['nombre_coleccion'],
+                            'imagen_coleccion' => $datos['imagen_coleccion']
+                        ]);
 
         return redirect()->route('colecciones.index')
             ->with('success', 'Coleccione updated successfully');
@@ -146,11 +167,15 @@ class ColeccioneController extends Controller
 
         $coleccion = Coleccione::find($id);
 
-        $urlSplit=explode("/",$coleccion->imagen_coleccion);
-        $ultimoValor=array_pop($urlSplit);
-        $publicId=explode(".",$ultimoValor);
-        
-        Cloudinary::destroy("productos/".$publicId[0]);
+        if($coleccion->imagen_coleccion!="https://res.cloudinary.com/daizvavk0/image/upload/v1686645847/productos/imgdefault_tn8ezg.jpg"){
+            $urlSplit=explode("/",$coleccion->imagen_coleccion);
+            $ultimoValor=array_pop($urlSplit);
+            $publicId=explode(".",$ultimoValor);
+            
+            Cloudinary::destroy("productos/".$publicId[0]);
+        }
+
+       
         $coleccion->delete();
 
         if(isset($_REQUEST['borrarColeccion'])){

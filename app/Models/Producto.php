@@ -33,8 +33,6 @@ class Producto extends Model
 		'nombre_producto' => 'required',
 		'precio' => 'required',
 		'descripcion' => 'required',
-		'imagen_delantera' => 'required',
-		'imagen_trasera' => 'required',
     ];
 
     protected $perPage = 20;

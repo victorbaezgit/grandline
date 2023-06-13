@@ -22,7 +22,6 @@ class Coleccione extends Model
     
     static $rules = [
 		'nombre_coleccion' => 'required',
-		'imagen_coleccion' => 'required',
     ];
 
     protected $perPage = 20;

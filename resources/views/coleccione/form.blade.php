@@ -11,7 +11,8 @@
             <input type="file" name="imagen_coleccion" class="form-control">
             <span class="text-danger">{{ $errors->first('imagen_coleccion') }}</span>
         </div>
-
+        <input type="hidden" name="imagen_anterior" value="{{$coleccione->imagen_coleccion}}">
+        <input type="hidden" name="nombre_anterior" value="{{$coleccione->nombre_coleccion}}">
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>

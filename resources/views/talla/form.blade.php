@@ -1,15 +1,27 @@
 <div class="box box-info padding-1">
     <div class="box-body">
         
-        <div class="form-group">
-            {{ Form::label('id_producto') }}
-            {{ Form::text('id_producto', $talla->id_producto, ['class' => 'form-control' . ($errors->has('id_producto') ? ' is-invalid' : ''), 'placeholder' => 'Id Producto']) }}
-            {!! $errors->first('id_producto', '<div class="invalid-feedback">:message</div>') !!}
+
+        <div class="form-group {{ $errors->has('tipo_talla') ? 'has-error' : '' }}">
+            <label for="id_producto">Producto</label>
+            <select name="id_producto" class="form-control">
+                <option value="" selected>Seleccionar</option>
+                @foreach ($productos as $producto)                       
+                <option value="{{$producto->id}}">{{$producto->nombre_producto}}</option>
+                @endforeach
+            </select>
+            <span class="text-danger">{{ $errors->first('id_producto') }}</span>
         </div>
-        <div class="form-group">
-            {{ Form::label('tipo_talla') }}
-            {{ Form::text('tipo_talla', $talla->tipo_talla, ['class' => 'form-control' . ($errors->has('tipo_talla') ? ' is-invalid' : ''), 'placeholder' => 'Tipo Talla']) }}
-            {!! $errors->first('tipo_talla', '<div class="invalid-feedback">:message</div>') !!}
+        
+        <div class="form-group {{ $errors->has('tipo_talla') ? 'has-error' : '' }}">
+            <label for="tipo_talla">Talla</label>
+            <select name="tipo_talla" class="form-control">
+                <option value="" selected>Seleccionar</option>
+                @foreach ($tallasTotal as $tallaTotal)                       
+                <option value="{{$tallaTotal}}">{{$tallaTotal}}</option>
+                @endforeach
+            </select>
+            <span class="text-danger">{{ $errors->first('tipo_talla') }}</span>
         </div>
         <div class="form-group">
             {{ Form::label('stock') }}

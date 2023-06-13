@@ -1,10 +1,15 @@
 <div class="box box-info padding-1">
     <div class="box-body">
         
-        <div class="form-group">
-            {{ Form::label('id_coleccion') }}
-            {{ Form::text('id_coleccion', $producto->id_coleccion, ['class' => 'form-control' . ($errors->has('id_coleccion') ? ' is-invalid' : ''), 'placeholder' => 'Id Coleccion']) }}
-            {!! $errors->first('id_coleccion', '<div class="invalid-feedback">:message</div>') !!}
+        <div class="form-group {{ $errors->has('tipo_talla') ? 'has-error' : '' }}">
+            <label for="id_coleccion">Colecciones</label>
+            <select name="id_coleccion" class="form-control">
+                <option value="" selected>Seleccionar</option>
+                @foreach ($colecciones as $coleccion)                       
+                <option value="{{$coleccion->id}}">{{$coleccion->nombre_coleccion}}</option>
+                @endforeach
+            </select>
+            <span class="text-danger">{{ $errors->first('id_coleccion') }}</span>
         </div>
         <div class="form-group">
             {{ Form::label('nombre_producto') }}
@@ -28,6 +33,9 @@
                 <span class="text-danger">{{ $errors->first('imagen_delantera') }}</span>
             </div>
         </div>
+        
+        <input type="hidden" name="imagen_delantera_anterior" value="{{$producto->imagen_delantera}}">
+        <input type="hidden" name="imagen_trasera_anterior" value="{{$producto->imagen_trasera}}">
 
         <div class="row mb-3 justify-content-center">
             <div class="form-group {{ $errors->has('imagen_trasera') ? 'has-error' : '' }}">

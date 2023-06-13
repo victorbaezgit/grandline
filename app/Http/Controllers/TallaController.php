@@ -43,7 +43,9 @@ class TallaController extends Controller
     public function create()
     {
         $talla = new Talla();
-        return view('talla.create', compact('talla'));
+        $productos=Producto::all();
+        $tallasTotal=['S','M','L','XL'];
+        return view('talla.create', compact('talla','tallasTotal','productos'));
     }
 
     /**
@@ -100,8 +102,9 @@ class TallaController extends Controller
     public function edit($id)
     {
         $talla = Talla::find($id);
-
-        return view('talla.edit', compact('talla'));
+        $productos=Producto::all();
+        $tallasTotal=['S','M','L','XL'];
+        return view('talla.edit', compact('talla','tallasTotal','productos'));
     }
 
     /**
