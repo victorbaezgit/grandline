@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+
 /**
  * Class UserController
  * @package App\Http\Controllers
@@ -71,6 +72,13 @@ class UserController extends Controller
         $usuarios = User::all();
 
         return view('user.listadoUsuarios', compact('usuarios'));
+    }
+
+    public function imprimirUsuarios(){
+        $usuarios=User::all();
+        view()-> share('usuarios',$usuarios);
+        $pdf= \PDF::loadView('pdf.listadoUsuarios');
+        return $pdf->download('usuarios.pdf');
     }
 
     /**
