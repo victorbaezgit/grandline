@@ -22,7 +22,7 @@
                  @foreach ($unionpedidos as $unionpedido)
                     <tr>
                         <td class="text-center">
-                        <a href="{{route('productos.productoIndividual', $unionpedido->producto->id)}}"><img src="{{ URL::to("/".$unionpedido->producto->imagen_delantera."") }}" alt="" style="width:100px;"></a>         
+                        <a href="{{route('productos.productoIndividual', $unionpedido->producto->id)}}"><img src="{{$unionpedido->producto->imagen_delantera}}" alt="" style="width:100px;"></a>         
                         </td>
                         <td>{{$unionpedido->talla}}</td>
                         <td>{{$unionpedido->cantidad}}</td>

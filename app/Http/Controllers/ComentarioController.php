@@ -54,7 +54,7 @@ class ComentarioController extends Controller
                 return redirect()->back()->with('error', 'Solo se puede comentar una vez por usuario.');
             }else{
                 $comentario = Comentario::create($request->all());
-                return redirect()->back()->with('success', 'Comentario añadido correctamente.');
+                return redirect()->back()->with('comentariosuccess', 'Comentario añadido correctamente.');
             }
             
         }else{
@@ -117,7 +117,7 @@ class ComentarioController extends Controller
 
         if(isset($_REQUEST['borrarComentario'])){
             $comentario = Comentario::find($id)->delete();
-            return redirect()->back()->with('success', 'Comentario eliminado correctamente.');
+            return redirect()->back()->with('comentariosuccess', 'Comentario eliminado correctamente.');
         }else{
             return redirect()->route('comentarios.index')
             ->with('success', 'Comentario deleted successfully');

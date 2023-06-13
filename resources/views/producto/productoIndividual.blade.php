@@ -87,29 +87,32 @@
                                 </div>
 
                                 @auth
-                                @if(Auth::user()->hasRole('admin'))
-                                <!-- Button trigger modal -->
-                                <button style="width: 100%; min-width: 194px;font-size: 21px;margin-bottom: 15px" class="btn bg-warning fw-bold p-3" type="button" id="addToCart" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Añadir al carrito
-                                </button>
+                                    @if(Auth::user()->hasRole('admin'))
+                                    <!-- Button trigger modal -->
+                                    <button style="width: 100%; min-width: 194px;font-size: 21px;margin-bottom: 15px" class="btn bg-warning fw-bold p-3" type="button" id="addToCart" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Añadir al carrito
+                                    </button>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">¡Atención!</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body" style="text-align: left">
-                                                <p>No puedes comprar productos siendo admin</p>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">¡Atención!</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body" style="text-align: left">
+                                                    <p>No puedes comprar productos siendo admin</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    @else
+                                        <button type="submit" id="addToCart" style="width: 100%; min-width: 194px;font-size: 21px;margin-bottom: 15px" class="btn bg-warning fw-bold p-3">Añadir al carrito</button>
+                                    @endif
                                 @else
-                                    <button type="submit" id="addToCart" style="width: 100%; min-width: 194px;font-size: 21px;margin-bottom: 15px" class="btn bg-warning fw-bold p-3">Añadir al carrito</button>
-                                @endif
+                                        <button type="submit" id="addToCart" style="width: 100%; min-width: 194px;font-size: 21px;margin-bottom: 15px" class="btn bg-warning fw-bold p-3">Añadir al carrito</button>
+
                                 @endauth
             
             
@@ -175,7 +178,7 @@
                             <div class="alert alert-danger">
                                 <p>{{ $message }}</p>
                             </div>
-                @elseif($message = Session::get('success'))
+                @elseif($message = Session::get('comentariosuccess'))
                             <div class="alert alert-success">
                                 <p>{{ $message }}</p>
                             </div>
