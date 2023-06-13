@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-
 //HOME
 Route::get('/', [App\Http\Controllers\ColeccioneController::class, 'listaColecciones'])->name('home');
 

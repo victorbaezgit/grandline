@@ -60,7 +60,7 @@
                         @endguest
 
                                 {{ Form::hidden('añadirCarrito', true) }}
-                                {{ Form::hidden('id_producto', 1) }}
+                                {{ Form::hidden('id_producto', $producto->id) }}
                                 {{ Form::hidden('id_usuario', Auth::id()) }}
                                 {{ Form::hidden('unidades', 1) }}
 
