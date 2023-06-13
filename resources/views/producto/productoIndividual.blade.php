@@ -29,7 +29,7 @@
                         <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
                             <div class="carousel-inner">
                               <div class="carousel-item active">
-                                <img src="https://brunosmoda.com/wp-content/uploads/2021/01/CAMISETA-NEGRA-LISA-HOMBRE-10043675_000-5.jpg" class="d-block w-100" alt="...">
+                                <img src="{{$producto->imagen_delantera}}" class="d-block w-100" alt="...">
                               </div>
                               <div class="carousel-item">
                                 <img src="" class="d-block w-100" alt="...">

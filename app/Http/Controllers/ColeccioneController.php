@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Coleccione;
 use Illuminate\Http\Request;
-
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 /**
  * Class ColeccioneController
  * @package App\Http\Controllers
@@ -63,20 +63,24 @@ class ColeccioneController extends Controller
      */
     public function store(Request $request)
     {
-
         request()->validate(Coleccione::$rules);
 
         $datos=$request->all();
 
-        if($request->hasFile('imagen_coleccion')){
-            $file=$request['imagen_coleccion'];
-            $destinationPath="img/";
-            $filename=time() . "-" . $file->getClientOriginalName();
-            $uploadSuccess= $request['imagen_coleccion']->move($destinationPath, $filename);
-            $datos['imagen_coleccion']=$destinationPath . $filename;
-        }else{
-            $datos['imagen_coleccion']="img/j-sin-foto.png";
-        }
+        $file=request()->file('imagen_coleccion');
+        $obj= Cloudinary::upload($file->getRealPath(),['folder'=>'productos']);
+        $url=$obj->getSecurePath();
+
+        $datos['imagen_coleccion']=$url;
+        // if($request->hasFile('imagen_coleccion')){
+        //     $file=$request['imagen_coleccion'];
+        //     $destinationPath="img/";
+        //     $filename=time() . "-" . $file->getClientOriginalName();
+        //     $uploadSuccess= $request['imagen_coleccion']->move($destinationPath, $filename);
+        //     $datos['imagen_coleccion']=$destinationPath . $filename;
+        // }else{
+        //     $datos['imagen_coleccion']="img/j-sin-foto.png";
+        // }
 
         $coleccione = Coleccione::create($datos);
 
@@ -87,7 +91,6 @@ class ColeccioneController extends Controller
             ->with('success', 'Coleccione created successfully.');
         }
 
-        
     }
 
     /**
@@ -141,13 +144,14 @@ class ColeccioneController extends Controller
     public function destroy($id)
     {
 
-        $coleccione = Coleccione::find($id);
+        $coleccion = Coleccione::find($id);
 
-        if($coleccione['imagen_coleccion']!="img/j-sin-foto.png"){
-            unlink($coleccione['imagen_coleccion']);
-        }
-
-        $coleccione->delete();
+        $urlSplit=explode("/",$coleccion->imagen_coleccion);
+        $ultimoValor=array_pop($urlSplit);
+        $publicId=explode(".",$ultimoValor);
+        
+        Cloudinary::destroy("productos/".$publicId[0]);
+        $coleccion->delete();
 
         if(isset($_REQUEST['borrarColeccion'])){
             return redirect()->route('home')
@@ -156,7 +160,6 @@ class ColeccioneController extends Controller
             return redirect()->route('colecciones.index')
             ->with('success', 'Coleccione deleted successfully');
         }
-
        
     }
 }

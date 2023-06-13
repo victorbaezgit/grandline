@@ -7,7 +7,7 @@ use App\Models\Coleccione;
 use App\Models\Talla;
 use App\Models\Producto;
 use Illuminate\Http\Request;
-
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 /**
  * Class ProductoController
  * @package App\Http\Controllers
@@ -53,30 +53,21 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
-
-
         request()->validate(Producto::$rules);
 
         $datos = $request->all();
 
-        if ($request->hasFile('imagen_delantera')) {
-            $file = $request['imagen_delantera'];
-            $destinationPath = "img/";
-            $filename = time() . "-" . $file->getClientOriginalName();
-            $uploadSuccess = $request['imagen_delantera']->move($destinationPath, $filename);
-            $datos['imagen_delantera'] = $destinationPath . $filename;
-        }
+        $file=request()->file('imagen_delantera');
+        $obj= Cloudinary::upload($file->getRealPath(),['folder'=>'productos']);
+        $url=$obj->getSecurePath(); 
 
-        if ($request->hasFile('imagen_trasera')) {
-            $file = $request['imagen_trasera'];
-            $destinationPath = "img/";
-            $filename = time() . "-" . $file->getClientOriginalName();
-            $uploadSuccess = $request['imagen_trasera']->move($destinationPath, $filename);
-            $datos['imagen_trasera'] = $destinationPath . $filename;
-        }
+        $datos['imagen_delantera']=$url;
+
+        $file=request()->file('imagen_trasera');
+        $obj= Cloudinary::upload($file->getRealPath(),['folder'=>'productos']);
+        $url=$obj->getSecurePath(); 
+
+        $datos['imagen_trasera']=$url;
 
         $producto = Producto::create($datos);
 
@@ -167,25 +158,31 @@ class ProductoController extends Controller
         $producto = Producto::find($id);
         $productoCopia = Producto::find($id);
 
+        $urlSplit=explode("/",$productoCopia->imagen_delantera);
+        $ultimoValor=array_pop($urlSplit);
+        $publicId=explode(".",$ultimoValor);
+        
+        Cloudinary::destroy("productos/".$publicId[0]);
 
-        if ($producto['imagen_delantera'] == $producto['imagen_delantera']) {
-            unlink($producto['imagen_delantera']);
-        } else {
-            if ($producto['imagen_delantera'] != "img/j-sin-foto.png") {
-                unlink($producto['imagen_delantera']);
-            }
-
-            if ($producto['imagen_trasera'] != "img/j-sin-foto.png") {
-                unlink($producto['imagen_trasera']);
-            }
-        }
+        $urlSplit=explode("/",$productoCopia->imagen_trasera);
+        $ultimoValor=array_pop($urlSplit);
+        $publicId=explode(".",$ultimoValor);
+        
+        Cloudinary::destroy("productos/".$publicId[0]);
 
         $producto->delete();
 
-        $coleccion = Coleccione::find($productoCopia['id_coleccion']);
-        $productos = Producto::all()->where("id_coleccion", "=", $productoCopia['id_coleccion']);
+        // if ($producto['imagen_delantera'] == $producto['imagen_delantera']) {
+        //     unlink($producto['imagen_delantera']);
+        // } else {
+        //     if ($producto['imagen_delantera'] != "img/j-sin-foto.png") {
+        //         unlink($producto['imagen_delantera']);
+        //     }
 
-
+        //     if ($producto['imagen_trasera'] != "img/j-sin-foto.png") {
+        //         unlink($producto['imagen_trasera']);
+        //     }
+        // }
 
         if (isset($_REQUEST['borrarProducto'])) {
             return redirect()->route('productos.listaProductos', $productoCopia['id_coleccion']);

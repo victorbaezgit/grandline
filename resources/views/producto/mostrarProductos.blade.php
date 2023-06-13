@@ -31,7 +31,7 @@
                     <div class="col-12 col-sm-6 col-md-3 carta" style="margin-bottom:10px;">
                         <a class="imagen" href="{{route('productos.productoIndividual',$producto->id)}}" style="position: relative;">
                             
-                            <img style="width: 100%;height:100%;" src="{{ URL::to("/$producto->imagen_delantera") }}">
+                            <img style="width: 100%;height:100%;" src="{{ $producto->imagen_delantera }}">
 
                             
                             <h4 class="name text-dark mt-3">{{$coleccion->nombre_coleccion}} - {{$producto->nombre_producto}}</h4>
