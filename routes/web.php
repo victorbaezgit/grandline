@@ -28,11 +28,6 @@ Auth::routes();
 //HOME
 Route::get('/', [App\Http\Controllers\ColeccioneController::class, 'listaColecciones'])->name('home');
 
-
-//PDF
-Route::get('/imprimirPDF', [UserController::class,'imprimirUsuarios'])->name('users.imprimirUsuarios');
-
-
 //ADMIN
 Route::get('/colecciones/create', [ColeccioneController::class,'crear'])->name('colecciones.crear');
 Route::get('/productos/create/{id}', [ProductoController::class,'crear'])->name('productos.crear');

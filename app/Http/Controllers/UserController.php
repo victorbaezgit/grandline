@@ -74,12 +74,6 @@ class UserController extends Controller
         return view('user.listadoUsuarios', compact('usuarios'));
     }
 
-    public function imprimirUsuarios(){
-        $usuarios=User::all();
-        view()-> share('usuarios',$usuarios);
-        $pdf= \PDF::loadView('pdf.listadoUsuarios');
-        return $pdf->download('usuarios.pdf');
-    }
 
     /**
      * Show the form for editing the specified resource.
