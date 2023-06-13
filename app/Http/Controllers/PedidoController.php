@@ -65,6 +65,13 @@ class PedidoController extends Controller
         return view('pedido.verPedidos', compact('pedidos'));
     }
 
+    public function mostrarVentas()
+    {
+        $pedidos = Pedido::all();
+
+        return view('pedido.verPedidos', compact('pedidos'));
+    }
+
     public function hacerPedido(Request $request)
     {
 

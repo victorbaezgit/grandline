@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
         <br><br>
-        <h1>Mis pedidos</h1>
+        <h1>Pedidos</h1>
         <br>
         <table class="table" id="myTable">
             <thead>

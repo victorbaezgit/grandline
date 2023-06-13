@@ -456,6 +456,13 @@
                 
                 @auth
                 @if(@Auth::user()->hasRole('admin'))
+                
+                <li class="nav-item w-100">
+                    <a class="nav-link" href="{{ route('pedidos.mostrarVentas') }}">Listado ventas</a>
+                </li>
+                <li class="nav-item w-100">
+                    <a class="nav-link" href="{{ route('users.listadoUsuarios') }}">Listado usuarios</a>
+                </li>
                 <li class="nav-item w-100">
                     <a class="nav-link" href="{{ route('colecciones.index') }}">Colecciones</a>
                 </li>
@@ -465,15 +472,6 @@
                 <li class="nav-item w-100">
                     <a class="nav-link" href="{{ route('comentarios.index') }}">Comentarios</a>
                 </li>
-                {{-- <li class="nav-item w-100">
-                    <a class="nav-link" href="{{ route('pedidos.index') }}">Pedidos</a>
-                </li>
-                <li class="nav-item w-100">
-                    <a class="nav-link" href="{{ route('unionpedidos.index') }}">Pedidos Union</a>
-                </li> --}}
-                {{-- <li class="nav-item w-100">
-                    <a class="nav-link" href="{{ route('carritos.index') }}">Carritos</a>
-                </li> --}}
                 <li class="nav-item w-100">
                     <a class="nav-link" href="{{ route('tallas.index') }}">Tallas</a>
                 </li>

@@ -66,6 +66,13 @@ class UserController extends Controller
         return view('user.show', compact('user'));
     }
 
+    public function listadoUsuarios()
+    {
+        $usuarios = User::all();
+
+        return view('user.listadoUsuarios', compact('usuarios'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
