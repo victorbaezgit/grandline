@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
 
         //COLECCION SEEDER
-        $this->call(ColeccionSeeder::class);
+        // $this->call(ColeccionSeeder::class);
   
         
     }
