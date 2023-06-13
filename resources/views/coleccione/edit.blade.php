@@ -19,7 +19,7 @@
                         <form method="POST" action="{{ route('colecciones.update', $coleccione->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
-
+                            
                             @include('coleccione.form')
 
                         </form>
