@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comentario;
+use App\Models\User;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -33,7 +35,9 @@ class ComentarioController extends Controller
     public function create()
     {
         $comentario = new Comentario();
-        return view('comentario.create', compact('comentario'));
+        $usuarios=User::all();
+        $productos=Producto::all();
+        return view('comentario.create', compact('comentario','usuarios','productos'));
     }
 
     /**
@@ -58,6 +62,7 @@ class ComentarioController extends Controller
             }
             
         }else{
+            $comentario = Comentario::create($request->all());
             return redirect()->route('comentarios.index')
             ->with('success', 'Comentario created successfully.');
         }
@@ -114,9 +119,9 @@ class ComentarioController extends Controller
      */
     public function destroy($id)
     {
+        $comentario = Comentario::find($id)->delete();
 
         if(isset($_REQUEST['borrarComentario'])){
-            $comentario = Comentario::find($id)->delete();
             return redirect()->back()->with('comentariosuccess', 'Comentario eliminado correctamente.');
         }else{
             return redirect()->route('comentarios.index')

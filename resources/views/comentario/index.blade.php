@@ -36,8 +36,8 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Id Usuario</th>
-										<th>Id Producto</th>
+										<th>Usuario</th>
+										<th>Producto</th>
 										<th>Contenido</th>
 
                                         <th></th>
@@ -48,7 +48,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $comentario->id_usuario }}</td>
+											<td>{{ $comentario->user['name'] }}- id({{ $comentario->id_usuario }})</td>
 											<td>{{ $comentario->id_producto }}</td>
 											<td>{{ $comentario->contenido }}</td>
 

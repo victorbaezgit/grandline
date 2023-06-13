@@ -115,6 +115,13 @@ class ColeccioneController extends Controller
         return view('coleccione.edit', compact('coleccione'));
     }
 
+    public function editar($id)
+    {
+        $coleccione = Coleccione::find($id);
+
+        return view('coleccione.editar', compact('coleccione'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -153,8 +160,13 @@ class ColeccioneController extends Controller
                             'imagen_coleccion' => $datos['imagen_coleccion']
                         ]);
 
-        return redirect()->route('colecciones.index')
+        if(isset($_REQUEST['editarProducto'])){
+            return redirect()->route('home')->with('success', 'Colección actualizada correctamente');;
+        }else{
+            return redirect()->route('colecciones.index')
             ->with('success', 'Coleccione updated successfully');
+        }
+        
     }
 
     /**

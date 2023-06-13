@@ -45,12 +45,24 @@
                                         @method('DELETE')
                                         <input type="hidden" name="borrarColeccion" value="borrarColeccion">
                                         <button class="eliminarX" type="submit" style="background-color:white;border:none;color: red;font-weight: 700;text-decoration: none;font-size: 20px"><i class="fa fa-fw fa-trash"></i> {{ __('X') }}</button>
-                                      </form>
-                                
-
+                                    </form>
+                    
                                 </div>
                             </div>
 
+                            <div class="menuEditar">
+
+                                <div class="infoMenuEditar">
+
+                                    <form action="{{route('colecciones.editar', $coleccion->id)}}" method="POST">
+                                        @csrf
+                                        @method('GET')
+                                        <input type="hidden" name="borrarColeccion" value="borrarColeccion">
+                                        <button type="submit" style="background-color:white;border:none;font-weight: 700;text-decoration: none;font-size: 20px"><i class="bi bi-pencil-fill"></i></button>
+                                    </form>
+                    
+                                </div>
+                            </div>
                             @endif
                             @endAuth
                             

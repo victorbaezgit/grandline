@@ -142,6 +142,12 @@ class ProductoController extends Controller
         return view('producto.edit', compact('producto','colecciones'));
     }
 
+    public function editar($id)
+    {
+        $producto = Producto::find($id);
+        return view('producto.editar', compact('producto'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -195,8 +201,14 @@ class ProductoController extends Controller
 
         $producto->update($datos);
 
-        return redirect()->route('productos.index')
+
+        if(isset($_REQUEST['editarProducto'])){
+            return redirect()->route('productos.listaProductos', $producto->id_coleccion)->with('success', 'Producto actualizado correctamente');
+        }else{
+            return redirect()->route('productos.index')
             ->with('success', 'Producto updated successfully');
+        }
+
     }
 
     /**

@@ -119,6 +119,22 @@
         }
 
 
+        .menuEditar{
+        margin:10px;
+        border-radius: 25px;
+        position:absolute;
+        top: 0%;
+        left:0%;
+        background-color:white;   
+        color:black;
+        }
+
+        .infoMenuEditar{
+            display:flex;
+            justify-content: space-between;
+            margin:10px;
+        }
+
         .carta .imagen{
             object-fit: cover;  
             

@@ -9,7 +9,11 @@
 @section('content')
 
 <div class="container px-4 px-lg-5 mt-5">
-
+    @if($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+@endif
     @Auth
     @if(Auth::user()->hasRole('admin'))
     <a href="{{route('productos.crear',$coleccion->id)}}" id="buttomLogin" style="width: 15%; min-width: 194px;font-size: 17px" class="bg-warning btn mb-3">+ Añadir Producto</a>
@@ -17,13 +21,6 @@
     @endAuth
     <h1 class="text-center">{{$coleccion->nombre_coleccion}}</h1><br><br>
     <div class="container">
-
-       
-        @if($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{ $message }}</p>
-                </div>
-        @endif
                 
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @foreach ($productos as $producto)
@@ -51,6 +48,20 @@
                                       </form>
                                 
 
+                                </div>
+                            </div>
+
+                            <div class="menuEditar">
+
+                                <div class="infoMenuEditar">
+
+                                    <form action="{{route('productos.editar', $producto->id)}}" method="POST">
+                                        @csrf
+                                        @method('GET')
+                                        <input type="hidden" name="borrarColeccion" value="borrarColeccion">
+                                        <button type="submit" style="background-color:white;border:none;font-weight: 700;text-decoration: none;font-size: 20px"><i class="bi bi-pencil-fill"></i></button>
+                                    </form>
+                    
                                 </div>
                             </div>
 

@@ -33,6 +33,9 @@ Route::get('/', [App\Http\Controllers\ColeccioneController::class, 'listaColecci
 Route::get('/colecciones/create', [ColeccioneController::class,'crear'])->name('colecciones.crear');
 Route::get('/productos/create/{id}', [ProductoController::class,'crear'])->name('productos.crear');
 Route::get('/tallas/create/{id}', [TallaController::class,'crear'])->name('tallas.crear');
+Route::get('/colecciones/{coleccion}/edit', [ColeccioneController::class,'editar'])->name('colecciones.editar');
+Route::get('/productos/{producto}/edit', [ProductoController::class,'editar'])->name('productos.editar');
+
 
 //COLECCIONES-PRODUCTOS
 Route::get('/colecciones/{coleccion}', [ProductoController::class,'listaProductos'])->name('productos.listaProductos');

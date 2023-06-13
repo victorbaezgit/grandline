@@ -36,7 +36,7 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Nombre Coleccion</th>
+										<th>Coleccion</th>
 										<th>Imagen Coleccion</th>
 
                                         <th></th>
@@ -47,7 +47,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $coleccione->nombre_coleccion }}</td>
+											<td>{{ $coleccione->nombre_coleccion }} - id({{ $coleccione->id }})</td>
 											<td>{{ $coleccione->imagen_coleccion }}</td>
 
                                             <td>

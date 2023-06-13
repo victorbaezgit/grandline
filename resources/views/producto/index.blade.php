@@ -36,7 +36,7 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Id Coleccion</th>
+										<th>Nombre Coleccion</th>
 										<th>Nombre Producto</th>
 										<th>Precio</th>
 										<th>Descripcion</th>
@@ -51,12 +51,25 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $producto->id_coleccion }}</td>
-											<td>{{ $producto->nombre_producto }}</td>
+											<td>{{ $producto->coleccione['nombre_coleccion'] }} - id({{ $producto->coleccione['id'] }})</td>
+											<td>{{ $producto->nombre_producto }} - id({{ $producto->id}})</td>
 											<td>{{ $producto->precio }}</td>
 											<td>{{ $producto->descripcion }}</td>
-											<td>{{ $producto->imagen_delantera }}</td>
-											<td>{{ $producto->imagen_trasera }}</td>
+                                            <td>
+                                            @if (strlen($producto->imagen_delantera)>50)
+                                                {{substr($producto->imagen_delantera,0,50)}}...
+                                            @else
+                                                {{$producto->imagen_delantera}}
+                                            @endif
+                                            </td>
+                                            <td>
+                                                @if (strlen($producto->imagen_trasera)>50)
+                                                    {{substr($producto->imagen_trasera,0,50)}}...
+                                                @else
+                                                    {{$producto->imagen_trasera}}
+                                                @endif
+                                            </td>
+										
 
                                             <td>
                                                 <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
