@@ -32,7 +32,7 @@
                                 <img src="{{$producto->imagen_delantera}}" class="d-block w-100" alt="...">
                               </div>
                               <div class="carousel-item">
-                                <img src="" class="d-block w-100" alt="...">
+                                <img src="{{$producto->imagen_trasera}}" class="d-block w-100" alt="...">
                               </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
@@ -67,10 +67,7 @@
 
                                 <div class="d-flex justify-content-between">
                                     <h1>{{$producto->nombre_producto}}</h1>
-                                    <a class="btn btn-outline-dark flex-shrink-0 d-flex justify-content-center align-items-center" type="button" href="#comentarios">
-                                        <i class="bi bi-star me-1"></i>
-                                        Escribir comentario
-                                    </a>
+                                    
                                 </div>
                                 <h5 class="mb-5">{{$producto->precio}}€</h5>
             
@@ -126,6 +123,10 @@
                                 </ul>
                        
                 
+                                <a class="btn btn-outline-dark flex-shrink-0 d-flex justify-content-center align-items-center" type="button" href="#comentarios">
+                                        <i class="bi bi-chat-left-dots"></i>&nbsp&nbsp</i>
+                                        Escribir comentario
+                                </a>
                     </form>
 
               
@@ -139,10 +140,11 @@
             <h1 class="mb-4 mb-5">Productos relacionados</h1>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 @foreach ($productosRelacionados as $productoRelacionado)
+                <a class="prodRel mt-auto" href="{{url("/productos/".$productoRelacionado->id)}}">
                 <div class="col mb-5">
                     <div class="card h-100">
 
-                        <img class="card-img-top" src="https://brunosmoda.com/wp-content/uploads/2021/01/CAMISETA-NEGRA-LISA-HOMBRE-10043675_000-5.jpg" alt="..." />
+                        <img class="card-img-top" src="{{$productoRelacionado->imagen_delantera}}" alt="..." />
 
                         <div class="card-body p-4">
                             <div class="text-center">
@@ -154,11 +156,10 @@
                             </div>
                         </div>
                         
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{url("/productos/".$productoRelacionado->id)}}">Ver producto</a></div>
-                        </div>
+                        
                     </div>
                 </div>
+                </a>
                 @endforeach
                 @if ($productosRelacionados->count() == 0)
                 <h5 class="fw-bolder mb-4">Parece que aún no hay juegos similares...</h5>

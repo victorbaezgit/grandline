@@ -19,7 +19,7 @@
     <a href="{{route('productos.crear',$coleccion->id)}}" id="buttomLogin" style="width: 15%; min-width: 194px;font-size: 17px" class="bg-warning btn mb-3">+ Añadir Producto</a>
     @endif
     @endAuth
-    <h1 class="text-center">{{$coleccion->nombre_coleccion}}</h1><br><br>
+    <h1 class="text-center text-uppercase">{{$coleccion->nombre_coleccion}}</h1><br><br>
     <div class="container">
                 
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">

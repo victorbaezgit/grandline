@@ -23,8 +23,8 @@
             @php
                 $contador++;
             @endphp
-                    <div class="{{$contador <= 2 ? 'col-sm-6' : 'col-sm-3' ;}} carta" style="margin-bottom:10px;">
-                        <a class="imagen" href="{{route('productos.listaProductos',$coleccion->id)}}" style="position: relative;">
+                    <div class="{{$contador <= 2 ? 'col-sm-6' : 'col-sm-3' ;}} carta " style="margin-bottom:10px;">
+                        <a class="imagen w-100" href="{{route('productos.listaProductos',$coleccion->id)}}" style="position: relative;">
                             
                             <img style="width: 100%;height:100%;" src="{{ $coleccion->imagen_coleccion }}">
 

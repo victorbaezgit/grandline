@@ -24,8 +24,10 @@ class DatabaseSeeder extends Seeder
 
 
         //COLECCION SEEDER
-        // $this->call(ColeccionSeeder::class);
+        $this->call(ColeccionSeeder::class);
   
-        
+        //PRODUCTO SEEDER
+        $this->call(ProductoSeeder::class);
+  
     }
 }

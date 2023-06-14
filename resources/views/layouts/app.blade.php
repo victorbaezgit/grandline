@@ -44,6 +44,15 @@
             align-items:center;
         }
 
+        .prodRel{
+            text-decoration:none;
+            color:black;
+        }
+
+        .prodRel:hover{
+            color:black;
+        }
+
         .carta{
         display:flex;
         justify-content: center;
@@ -104,7 +113,8 @@
         transform: translate(-50%, -50%); 
         width: 50%;
         height: 25%;
-        background-color:white;   
+        background-color:rgb(255, 192, 32)!important;   
+        
         display:flex;
         justify-content: center;
         align-items: center;
