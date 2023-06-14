@@ -132,24 +132,46 @@ class UserController extends Controller
 
     public function actualizarPassword(Request $request)
     {
-        $request->validate([
-            'oldPassword' => ['required', 'string', 'min:8'],
-            'password' => ['required', 'string', 'regex:[^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$]', 'confirmed'],
-            'password_confirmation' => ['required', 'string', 'regex:[^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$]'],
-        ]);
 
+        if(isset($_REQUEST['enviaremail'])){
+            $request->validate([
+                'password' => ['required', 'string', 'regex:[^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$]', 'confirmed'],
+                'password_confirmation' => ['required', 'string', 'regex:[^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$]'],
+            ]);
+
+            User::where("email","=",$request->email)->update([
+                'password' => Hash::make($request->password)
+            ]);
+
+        }else{
+            $request->validate([
+                'oldPassword' => ['required', 'string', 'min:8'],
+                'password' => ['required', 'string', 'regex:[^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$]', 'confirmed'],
+                'password_confirmation' => ['required', 'string', 'regex:[^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$]'],
+            ]);
 
         #Match The Old Password
         if (!Hash::check($request->oldPassword, auth()->user()->password)) {
             return back()->with("error", "La contraseña anterior no coincide");
         }
 
-
         #Update the new Password
         User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->password)
         ]);
-        return back()->with('success', 'La contraseña ha sido cambiada con éxito');
+
+        }
+        
+
+
+       
+
+        if(isset($_REQUEST['enviaremail'])){
+            return redirect()->route('home')->with('success', 'La contraseña ha sido cambiada con éxito');
+        }else{
+            return back()->with('success', 'La contraseña ha sido cambiada con éxito');
+        }
+        
     }
 
     public function detallesPersonales()

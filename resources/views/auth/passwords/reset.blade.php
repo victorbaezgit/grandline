@@ -8,9 +8,10 @@
                 
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
+                    <form method="POST" action="{{ route('users.actualizarPassword') }}">
                         @csrf
-
+                        @method('PUT')
+                        
                         <input type="hidden" name="token" value="{{ $token }}">
 
 
@@ -51,6 +52,7 @@
                             </div>
                         </div>
 
+                        <input type="hidden" name="enviaremail" value="enviaremail">
 
                         <div class="row justify-content-cente">
                             <div class="col-md-6">
