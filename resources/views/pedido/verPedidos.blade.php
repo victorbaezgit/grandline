@@ -13,6 +13,11 @@
             <thead>
               <tr>
                 <th scope="col">Id Pedido</th>
+                @Auth
+                  @if(@Auth::user()->hasRole('admin'))
+                  <th scope="col">Usuario</th>           
+                  @endif
+                @endAuth 
                 <th scope="col">Direccion</th>
                 <th scope="col">Codigo Postal</th>
                 <th scope="col">Localidad</th>
@@ -27,6 +32,11 @@
                 @foreach ($pedidos as $pedido)
                     <tr>
                         <td>{{$pedido->id}}</td>
+                        @Auth
+                          @if(@Auth::user()->hasRole('admin'))
+                          <td>{{$pedido->user['name']}} - ({{$pedido->user['id']}})</td>           
+                          @endif
+                        @endAuth 
                         <td>{{$pedido->direccion}}</td>
                         <td>{{$pedido->codigoPostal}}</td>
                         <td>{{$pedido->localidad}}</td>
