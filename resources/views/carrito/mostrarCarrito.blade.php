@@ -88,12 +88,12 @@
             @section('scripts')
 
                 <script>
-                    let resultado = 0.00;
+                    let resultado = 0;
                     document.querySelectorAll('.precios').forEach(p => {
                         resultado  += parseFloat(p.dataset.price);
                     })
-                    document.querySelector('#precioTotal').innerText = resultado+'€';
-                    document.querySelector('#precioFinal').value = resultado;
+                    document.querySelector('#precioTotal').innerText = resultado.toFixed(2)+'€';
+                    document.querySelector('#precioFinal').value = resultado.toFixed(2);
 
                 </script>
 
