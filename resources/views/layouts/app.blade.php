@@ -44,6 +44,7 @@
             align-items:center;
         }
 
+        
         .prodRel{
             text-decoration:none;
             color:black;
@@ -309,6 +310,7 @@
             padding-right:0px;
             margin-right:2px;
             }
+
         }
 
 
@@ -324,6 +326,11 @@
         background-color:transparent;  
         opacity:1; 
         }
+        .infobox{
+                display:block;
+                text-align: center;
+                
+            }
         }
 
         @media only screen and (min-width: 660px) and (max-width: 899px){
@@ -420,6 +427,10 @@
 
         .navbarRight{
             margin-left:20px!important;
+        }
+
+        .comentarios{
+            width:100%!important;
         }
 
 </style>

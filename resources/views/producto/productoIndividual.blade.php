@@ -172,7 +172,7 @@
 
 
     <section>
-    <div class="container px-4 px-lg-5 mt-1">
+    <div class="container px-4 px-lg-5 mt-1 comentarios">
         <h1 class="text-dark mb-4">Comentarios</h1>
       <div class="card bg-light">
         @if ($message = Session::get('error'))
@@ -184,7 +184,7 @@
                                 <p>{{ $message }}</p>
                             </div>
                 @endif
-          <div class="card-body text-dark p-5">
+          <div class="card-body text-dark">
 
 
               @includeif('partials.errors')
