@@ -33,5 +33,7 @@ class DatabaseSeeder extends Seeder
         //TALLA SEEDER
         $this->call(TallaSeeder::class);
 
+        //COMENTARIO SEEDER
+        $this->call(ComentarioSeeder::class);
     }
 }
