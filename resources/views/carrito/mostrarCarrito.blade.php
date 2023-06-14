@@ -32,7 +32,7 @@
                             <div  style="display:flex;">
                                 <div style="width: 10%;min-width: 95px;margin-right: 18px;">
                                     <a href="">
-                                        <img style="width: 100%;" src="https://brunosmoda.com/wp-content/uploads/2021/01/CAMISETA-NEGRA-LISA-HOMBRE-10043675_000-5.jpg">
+                                        <img style="width: 100%;" src="{{$cart->producto->imagen_delantera}}">
                                     </a>
 
                                 </div>
