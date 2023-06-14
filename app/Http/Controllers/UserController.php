@@ -134,8 +134,8 @@ class UserController extends Controller
     {
         $request->validate([
             'oldPassword' => ['required', 'string', 'min:8'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'password_confirmation' => ['required', 'string', 'min:8'],
+            'password' => ['required', 'string', 'regex:[^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$]', 'confirmed'],
+            'password_confirmation' => ['required', 'string', 'regex:[^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$]'],
         ]);
 
 
