@@ -32,9 +32,18 @@
             box-sizing: border-box;
             font-family: 'Raleway', sans-serif;
         }
+        
         h1,h2,h3,h4{
             font-weight: 900!important;
         }
+
+        .menuDerecha{
+            display:flex;
+            padding-right:12px;
+            margin-right:40px;
+            align-items:center;
+        }
+
         .carta{
         display:flex;
         justify-content: center;
@@ -282,6 +291,17 @@
             padding-right: 2rem;
         }
 
+        @media only screen and (max-width:660px){
+            .lbl-menu{
+            margin-left: 0px;
+            }
+            .menuDerecha{
+            padding-right:0px;
+            margin-right:2px;
+            }
+        }
+
+
         @media only screen and (max-width: 1200px){
             .infobox{
         margin-top:15px;
@@ -387,6 +407,11 @@
             display:Flex;
             flex-direction: column;
         }
+
+        .navbarRight{
+            margin-left:20px!important;
+        }
+
 </style>
 </head>
 <body>
@@ -423,7 +448,7 @@
                     </svg>
                 </a>
             </div>
-                <div style="display: flex;padding-right: 12px;  margin-right: 40px;align-items: center;">
+                <div class="menuDerecha">
                     <!-- Authentication Links -->
                     @guest
                         @if (Route::has('login'))
