@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="contenido col-12 col-md-9">
+<div class="col-md-9">
+    <div class="contenido  col-md-9">
         <h1 class="mb-5 mt-4"><strong>HOLA, {{ Auth::user()->name }}</strong></h1>
 
                 @auth
@@ -52,5 +53,6 @@
         </div>
 
     </div>
+</div>
 @endsection
 
