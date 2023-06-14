@@ -218,7 +218,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="borrarComentario" value="borrarComentario">
-                                <button type="submit" style="background-color:white;border:none;color: red;font-weight: 400;text-decoration: none;font-size: 10px"><i class="fa fa-fw fa-trash m-1"></i> {{ __('Eliminar') }}</button>
+                                <button type="submit" style="background-color:#F8F9FA;border:none;color: red;font-weight: 400;text-decoration: none;font-size: 10px"><i class="fa fa-fw fa-trash m-1"></i> {{ __('Eliminar') }}</button>
                               </form>
                             @endif
 

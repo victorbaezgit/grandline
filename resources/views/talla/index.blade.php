@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $tallas->links() !!}
+                {{$tallas->links("pagination::bootstrap-4")}}
             </div>
         </div>
     </div>

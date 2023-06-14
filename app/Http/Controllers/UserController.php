@@ -160,9 +160,10 @@ class UserController extends Controller
     public function actualizarPerfil(Request $request, User $user)
     {
        
-        // request()->validate(User::$rules);
+        //  request()->validate(User::$rules);
 
         // $user->update($request->all());
+
 
         User::where('id', Auth::id())
             ->update([

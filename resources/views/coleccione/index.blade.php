@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $colecciones->links() !!}
+                {{$colecciones->links("pagination::bootstrap-4")}}
             </div>
         </div>
     </div>

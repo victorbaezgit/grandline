@@ -54,7 +54,13 @@
 											<td>{{ $producto->coleccione['nombre_coleccion'] }} - id({{ $producto->coleccione['id'] }})</td>
 											<td>{{ $producto->nombre_producto }} - id({{ $producto->id}})</td>
 											<td>{{ $producto->precio }}</td>
-											<td>{{ $producto->descripcion }}</td>
+											<td>
+                                                @if (strlen($producto->descripcion)>50)
+                                                {{substr($producto->descripcion,0,50)}}...
+                                            @else
+                                                {{$producto->descripcion}}
+                                            @endif
+                                            </td>
                                             <td>
                                             @if (strlen($producto->imagen_delantera)>50)
                                                 {{substr($producto->imagen_delantera,0,50)}}...
@@ -87,7 +93,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $productos->links() !!}
+                {{$productos->links("pagination::bootstrap-4")}}
             </div>
         </div>
     </div>

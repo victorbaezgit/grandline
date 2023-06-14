@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $comentarios->links() !!}
+                {{$comentarios->links("pagination::bootstrap-4")}}
             </div>
         </div>
     </div>
