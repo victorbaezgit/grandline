@@ -66,7 +66,7 @@ class ProductoController extends Controller
     
             $datos['imagen_delantera'] = $url;
         } else {
-            $datos['imagen_delantera'] = "https://res.cloudinary.com/daizvavk0/image/upload/v1686641340/productos/imgdefault_lm7auu.jpg";
+            $datos['imagen_delantera'] = "https://res.cloudinary.com/daizvavk0/image/upload/v1686645847/productos/imgdefault_tn8ezg.jpg";
         }
 
 
@@ -77,7 +77,7 @@ class ProductoController extends Controller
     
             $datos['imagen_trasera'] = $url;
         } else {
-            $datos['imagen_trasera'] = "https://res.cloudinary.com/daizvavk0/image/upload/v1686641340/productos/imgdefault_lm7auu.jpg";
+            $datos['imagen_trasera'] = "https://res.cloudinary.com/daizvavk0/image/upload/v1686645847/productos/imgdefault_tn8ezg.jpg";
         }
 
         $producto = Producto::create($datos);
@@ -221,7 +221,7 @@ class ProductoController extends Controller
         $producto = Producto::find($id);
         $productoCopia = Producto::find($id);
 
-        if ($productoCopia->imagen_delantera != "https://res.cloudinary.com/daizvavk0/image/upload/v1686641340/productos/imgdefault_lm7auu.jpg") {
+        if ($productoCopia->imagen_delantera != "https://res.cloudinary.com/daizvavk0/image/upload/v1686645847/productos/imgdefault_tn8ezg.jpg") {
             $urlSplit = explode("/", $productoCopia->imagen_delantera);
             $ultimoValor = array_pop($urlSplit);
             $publicId = explode(".", $ultimoValor);
@@ -229,7 +229,7 @@ class ProductoController extends Controller
             Cloudinary::destroy("productos/" . $publicId[0]);
         }
 
-        if ($productoCopia->imagen_trasera != "https://res.cloudinary.com/daizvavk0/image/upload/v1686641340/productos/imgdefault_lm7auu.jpg") {
+        if ($productoCopia->imagen_trasera != "https://res.cloudinary.com/daizvavk0/image/upload/v1686645847/productos/imgdefault_tn8ezg.jpg") {
             $urlSplit = explode("/", $productoCopia->imagen_trasera);
             $ultimoValor = array_pop($urlSplit);
             $publicId = explode(".", $ultimoValor);
