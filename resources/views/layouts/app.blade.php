@@ -582,7 +582,7 @@
                         <a href="{{ route('footerInfo.politicaPrivacidad') }}" class="">POLÍTICA DE PRIVACIDAD</a>
                     </li>
                     <li>
-                        <a href="{{ route('footerInfo.politicaCookies') }}" class="">POLÍTICA DE COOKIES</a>
+                        <a href="{{ route('footerInfo.ayudas') }}" class="">AYUDAS</a>
                     </li>
                     <li>
                         <a href="{{ route('footerInfo.avisoLegal') }}" class="">AVISO LEGAL</a>

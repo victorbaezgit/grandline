@@ -15,8 +15,9 @@ class TallaSeeder extends Seeder
     {
         
         for($i=1;$i<=24;$i++){
-            Talla::create(['id_producto'=>$i, "tipo_talla"=>"S", "stock"=>20]);
-            Talla::create(['id_producto'=>$i, "tipo_talla"=>"L", "stock"=>20]);
+            Talla::create(['id_producto'=>$i, "tipo_talla"=>"S", "stock"=>15]);
+            Talla::create(['id_producto'=>$i, "tipo_talla"=>"L", "stock"=>15]);
+            Talla::create(['id_producto'=>$i, "tipo_talla"=>"XL", "stock"=>2]);
         }
     }
 }

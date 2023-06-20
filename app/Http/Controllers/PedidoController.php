@@ -90,39 +90,75 @@ class PedidoController extends Controller
             'telefono' => ['required', 'numeric', 'digits:9'],
         ]);
 
-        $pedido = Pedido::create([
-            'id_usuario'=>$id_usuario,
-            'precio_total'=>$request['precioTotal'],
-            'direccion'=>$request['direccion'],
-            'codigoPostal'=>$request['codigoPostal'],
-            'localidad'=>$request['localidad'],
-            'pais'=>$request['pais'],
-            'telefono'=>$request['telefono'],
-            'fecha_compra'=>Carbon::now(),
-        ]);
+        $error=false;
 
         foreach ($carrito as $carro) {
-            Unionpedido::create([
-                'id_usuario' => $id_usuario,
-                'id_producto' => $productos->where('id', $carro->id_producto)->first()->id,
-                'id_pedido' => $pedido->id,
-                'talla' => $carro->talla,
-                'cantidad' => $carro->unidades,
-                'precio_unitario' => $productos->where('id', $carro->id_producto)->first()->precio,
-            ]);
-
+            
             $stock=Talla::where('id_producto', $carro->id_producto)->where('tipo_talla', $carro->talla)->get();
             
-            Talla::where('id_producto', $carro->id_producto)->where('tipo_talla', $carro->talla)
+            
+            if($stock[0]->stock<$carro->unidades){
+                $error=true;
+
+                if($stock[0]->stock>0){
+                    Carrito::where('id', $carro->id)
                         ->update([
-                            'stock' => $stock[0]->stock-$carro->unidades
+                            'unidades' => $stock[0]->stock
                         ]);
-                    
-            Carrito::where('id', $carro->id)->delete();
+                }else{
+                    Carrito::where('id', $carro->id)->delete();
+                }
+                
+            }
+
+
+
+            
         }
 
+        
 
-          return redirect()->route('home')->with('success','Compra realizada correctamente');
+        if($error){
+            $carrito = Carrito::where("id_usuario","=",Auth::id())->get();
+
+            return redirect()->route('carritos.mostrarCarrito', compact('carrito'))->with('sinStock','El pedido no se ha podido realizar debido a que la cantidad de productos a pedir no estaban disponibles. Su carrito ha sido actualizado.');
+        }else{
+            $pedido = Pedido::create([
+                'id_usuario'=>$id_usuario,
+                'precio_total'=>$request['precioTotal'],
+                'direccion'=>$request['direccion'],
+                'codigoPostal'=>$request['codigoPostal'],
+                'localidad'=>$request['localidad'],
+                'pais'=>$request['pais'],
+                'telefono'=>$request['telefono'],
+                'fecha_compra'=>Carbon::now(),
+            ]);
+    
+            foreach ($carrito as $carro) {
+                Unionpedido::create([
+                    'id_usuario' => $id_usuario,
+                    'id_producto' => $productos->where('id', $carro->id_producto)->first()->id,
+                    'id_pedido' => $pedido->id,
+                    'talla' => $carro->talla,
+                    'cantidad' => $carro->unidades,
+                    'precio_unitario' => $productos->where('id', $carro->id_producto)->first()->precio,
+                ]);
+    
+                $stock=Talla::where('id_producto', $carro->id_producto)->where('tipo_talla', $carro->talla)->get();
+                
+                Talla::where('id_producto', $carro->id_producto)->where('tipo_talla', $carro->talla)
+                            ->update([
+                                'stock' => $stock[0]->stock-$carro->unidades
+                            ]);
+                        
+                Carrito::where('id', $carro->id)->delete();
+            }
+            return redirect()->route('home')->with('success','Compra realizada correctamente');
+        }
+
+       
+
+          
     }
 
     /**

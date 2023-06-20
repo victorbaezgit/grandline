@@ -8,6 +8,12 @@
 <div class="bg-light">
     <div class="container">
             <h1 class="pago mb-5">PAGO</h1>
+            @if ($message = Session::get('error'))
+                            <div class="alert alert-danger">
+                                <p>{{ $message }}</p>
+                            </div>
+            
+            @endif
         <form method="POST" action="{{route('carritos.hacerPedido')}}">
             @csrf
             <div class="contenedorProducto">

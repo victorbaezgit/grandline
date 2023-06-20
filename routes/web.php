@@ -63,8 +63,8 @@ Route::view('/politica-envios', 'footerInfo.politicaEnvios')->name('footerInfo.p
 Route::view('/contacto', 'footerInfo.contacto')->name('footerInfo.contacto');
 Route::view('/condiciones-venta', 'footerInfo.condicionesVenta')->name('footerInfo.condicionesVenta');
 Route::view('/politica-privacidad', 'footerInfo.politicaPrivacidad')->name('footerInfo.politicaPrivacidad');
-Route::view('/politica-cookies', 'footerInfo.politicaCookies')->name('footerInfo.politicaCookies');
 Route::view('/aviso-legal', 'footerInfo.avisoLegal')->name('footerInfo.avisoLegal');
+Route::view('/ayudas', 'footerInfo.ayudas')->name('footerInfo.ayudas');
 
 
 //CRUD COLECCIONES
