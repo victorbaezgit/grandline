@@ -49,7 +49,7 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $comentario->user['name'] }}- id({{ $comentario->id_usuario }})</td>
-											<td>{{ $comentario->id_producto }}</td>
+											<td>{{$comentario->producto['nombre_producto'] }}- id({{ $comentario->id_producto }})</td>
 											<td>{{ $comentario->contenido }}</td>
 
                                             <td>

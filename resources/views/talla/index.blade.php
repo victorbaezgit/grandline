@@ -48,7 +48,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $talla->id_producto }}</td>
+											<td> {{$talla->producto['nombre_producto']}} id-({{ $talla->id_producto }})</td>
 											<td>{{ $talla->tipo_talla }}</td>
 											<td>{{ $talla->stock }}</td>
 
